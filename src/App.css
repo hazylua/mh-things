@@ -1,3 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #3c454e;
+  font-size: 14px;
+  line-height: 1.35;
+  font-family: Segoe UI;
+}
+
+nav {
+  background-color: #f0f0f0;
+  min-height: 30px;
+  margin-bottom: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+nav li {
+  float: left;
+}
+
+nav a {
+  display: block;
+}
+
+main {
+  margin: 40px 50px;
+}
+
+main p {
+  padding: 5px;
+}
+
+/* My Classes */
+
+.navbar-link {
+  padding: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-title {
+  text-align: center;
+  margin: 50px;
+}
+
+.skill-table {
+  width: 100%;
+  margin: 10px;
+  border-collapse: collapse;
+}
+
+.skill-table thead {
+  background-color: azure;
+}
+
+.skill-table th,
+td {
+  padding: 15px;
+  margin: 0;
+  text-align: left;
+  border: 1px solid #a1a1a1;
+}
+
+.skill-table tr:hover {
+  background-color: rgb(240, 241, 241);
+}
+
+.skill-input {
+  width: 10%;
+  margin: 10px;
+  padding: 3px;
+}
+
+/* Default React Classes */
+
 .App {
   text-align: center;
 }
