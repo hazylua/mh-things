@@ -15,12 +15,13 @@
     "react-router-dom": "^5.1.2"
   },
   "scripts": {
-    "start": "node server.js",
-    "dev-start": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -b master -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
+    "node-server": "node server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
