@@ -5,14 +5,12 @@ import FilterTable from './pages/FilterTable'
 
 import './App.css'
 
-const repo = "mh-things"
-console.log(repo)
 const Navbar = () => (
   <nav>
     <ul>
       <li><Link className="navbar-link" to="/mh-things/">Home</Link></li>
-      <li><Link className="navbar-link" to="/mh-things/about">About</Link></li>
       <li><Link className="navbar-link" to="/mh-things/skill-filter">Filter Page</Link></li>
+      <li><Link className="navbar-link" to="/mh-things/about">About</Link></li>
     </ul>
   </nav>
 )
