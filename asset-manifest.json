@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/mh-things/static/css/main.2c09c9a1.chunk.css",
+    "main.js": "/mh-things/static/js/main.b9f55251.chunk.js",
+    "main.js.map": "/mh-things/static/js/main.b9f55251.chunk.js.map",
+    "runtime-main.js": "/mh-things/static/js/runtime-main.9521a46b.js",
+    "runtime-main.js.map": "/mh-things/static/js/runtime-main.9521a46b.js.map",
+    "static/js/2.e0e02627.chunk.js": "/mh-things/static/js/2.e0e02627.chunk.js",
+    "static/js/2.e0e02627.chunk.js.map": "/mh-things/static/js/2.e0e02627.chunk.js.map",
+    "index.html": "/mh-things/index.html",
+    "precache-manifest.a11d86b83ebbaecb5657bed40ae1d678.js": "/mh-things/precache-manifest.a11d86b83ebbaecb5657bed40ae1d678.js",
+    "service-worker.js": "/mh-things/service-worker.js",
+    "static/css/main.2c09c9a1.chunk.css.map": "/mh-things/static/css/main.2c09c9a1.chunk.css.map",
+    "static/js/2.e0e02627.chunk.js.LICENSE.txt": "/mh-things/static/js/2.e0e02627.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9521a46b.js",
+    "static/js/2.e0e02627.chunk.js",
+    "static/css/main.2c09c9a1.chunk.css",
+    "static/js/main.b9f55251.chunk.js"
+  ]
+}
