@@ -5,7 +5,8 @@ class FilterTable extends React.Component {
     super(props);
     this.state = {
       date: new Date(),
-      rowData: []
+      rowData: [],
+      filtered: []
     };
   }
 
@@ -26,12 +27,26 @@ class FilterTable extends React.Component {
           }
         }
         // console.log(rows);
-        this.setState({ rowData: rows });
+        this.setState({
+          rowData: rows,
+          filtered: rows
+        });
       });
   }
 
   onSkillInputTextChange(e) {
-    console.log(e.target.value);
+    // console.log(
+    //   this.state.rowData.filter(
+    //     skill => skill.skill.toUpperCase() === e.target.value.toUpperCase()
+    //   )
+    // );
+
+    this.setState({
+      filtered: this.state.rowData.filter(
+        skill =>
+          skill.skill.toUpperCase().indexOf(e.target.value.toUpperCase()) !== -1
+      )
+    });
   }
 
   render() {
@@ -54,7 +69,7 @@ class FilterTable extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.rowData.map(skill => {
+            {this.state.filtered.map(skill => {
               return (
                 <tr>
                   <td>{skill.skill}</td>

@@ -5,12 +5,14 @@ import FilterTable from './pages/FilterTable'
 
 import './App.css'
 
+const repo = "mh-things"
+console.log(repo)
 const Navbar = () => (
   <nav>
     <ul>
-      <li><Link className="navbar-link" to="/">Home</Link></li>
-      <li><Link className="navbar-link" to="/about">About</Link></li>
-      <li><Link className="navbar-link" to="/skill-filter">Filter Page</Link></li>
+      <li><Link className="navbar-link" to="/mh-things/">Home</Link></li>
+      <li><Link className="navbar-link" to="/mh-things/about">About</Link></li>
+      <li><Link className="navbar-link" to="/mh-things/skill-filter">Filter Page</Link></li>
     </ul>
   </nav>
 )
@@ -18,9 +20,9 @@ const Navbar = () => (
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/skill-filter" component={FilterTable} />
+      <Route exact path="/mh-things" component={Home} />
+      <Route path="/mh-things/about" component={About} />
+      <Route path="/mh-things/skill-filter" component={FilterTable} />
     </Switch>
   </main>
 )
