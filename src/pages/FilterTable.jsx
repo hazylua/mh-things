@@ -4,7 +4,6 @@ class FilterTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date(),
       rowData: [],
       filtered: []
     };
@@ -26,7 +25,7 @@ class FilterTable extends React.Component {
             row_num += 1;
           }
         }
-        // console.log(rows);
+
         this.setState({
           rowData: rows,
           filtered: rows
@@ -35,12 +34,6 @@ class FilterTable extends React.Component {
   }
 
   onSkillInputTextChange(e) {
-    // console.log(
-    //   this.state.rowData.filter(
-    //     skill => skill.skill.toUpperCase() === e.target.value.toUpperCase()
-    //   )
-    // );
-
     this.setState({
       filtered: this.state.rowData.filter(
         skill =>
