@@ -10,7 +10,9 @@ class FilterTable extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://api.myjson.com/bins/149nvg")
+    fetch(
+      "https://raw.githubusercontent.com/yb00/mh-things/source/json/skill_pages.json"
+    )
       .then(response => response.json())
       .then(json => {
         let rows = [];
