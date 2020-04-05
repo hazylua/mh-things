@@ -66,6 +66,7 @@ main p {
 td {
   padding: 15px;
   margin: 0;
+  width: inherit;
   text-align: left;
   border: 1px solid #a1a1a1;
 }
@@ -78,6 +79,37 @@ td {
   width: 10%;
   margin: 10px;
   padding: 3px;
+}
+
+.open-div {
+  width: 100%;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.responsive-row {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.column {
+  min-height: 500px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 10px;
+  background-color: #f0ffff;
+  position: relative;
+}
+
+.select-items {
+  width: 500px;
+  height: 700px;
+  /* display: none; */
+  top: 50%;
+  left: 50%;
+  background-color: black;
 }
 
 /* Default React Classes */

@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import FilterTable from './pages/FilterTable'
+import ArmorSetSearch from './pages/ArmorSetSearch'
 
 import './App.css'
 
@@ -10,6 +11,7 @@ const Navbar = () => (
     <ul>
       <li><Link className="navbar-link" to="/mh-things/">Home</Link></li>
       <li><Link className="navbar-link" to="/mh-things/skill-filter">Filter Page</Link></li>
+      <li><Link className="navbar-link" to="/mh-things/ass">Armor Set Search</Link></li>
       <li><Link className="navbar-link" to="/mh-things/about">About</Link></li>
     </ul>
   </nav>
@@ -21,6 +23,7 @@ const Main = () => (
       <Route exact path="/mh-things" component={Home} />
       <Route path="/mh-things/about" component={About} />
       <Route path="/mh-things/skill-filter" component={FilterTable} />
+      <Route path="/mh-things/ass" component={ArmorSetSearch} />
     </Switch>
   </main>
 )
