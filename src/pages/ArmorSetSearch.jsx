@@ -6,37 +6,40 @@ class ArmorSetSearch extends Component {
     this.state = {
       skills: [],
       filtered: [],
-      set: []
+      set: [],
     };
   }
 
   componentDidMount() {
     fetch("https://mhw-db.com/skills")
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         let skills = [];
         for (let object of json) {
-          skills.push(object.name);
+          skills.push({
+            name: object.name,
+            description: object.description,
+          });
         }
         this.setState({
           skills: skills,
-          filtered: skills
+          filtered: skills,
         });
       });
   }
 
-  addSkill = e => {
+  addSkill = (e) => {
     var set = this.state.set;
     var index = set.indexOf(e.target.textContent);
     if (index !== -1) {
       set.splice(index, 1);
       this.setState({
-        set: set
+        set: set,
       });
     } else {
       set.push(e.target.textContent);
       this.setState({
-        set: set
+        set: set,
       });
     }
 
@@ -59,10 +62,17 @@ class ArmorSetSearch extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.filtered.map(skill => {
+                {this.state.filtered.map((skill) => {
                   return (
                     <tr>
-                      <td onClick={this.addSkill}>{skill}</td>
+                      <td onClick={this.addSkill}>
+                        <p title={skill.description} className="tooltip">
+                          {skill.name}
+                          {/* <span className="tooltiptext">
+                            {skill.description}
+                          </span> */}
+                        </p>
+                      </td>
                     </tr>
                   );
                 })}
