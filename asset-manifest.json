@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/mh-things/static/css/main.8f9ceae6.chunk.css",
-    "main.js": "/mh-things/static/js/main.977c2c01.chunk.js",
-    "main.js.map": "/mh-things/static/js/main.977c2c01.chunk.js.map",
+    "main.css": "/mh-things/static/css/main.51bae8a2.chunk.css",
+    "main.js": "/mh-things/static/js/main.07a9fb2e.chunk.js",
+    "main.js.map": "/mh-things/static/js/main.07a9fb2e.chunk.js.map",
     "runtime-main.js": "/mh-things/static/js/runtime-main.9521a46b.js",
     "runtime-main.js.map": "/mh-things/static/js/runtime-main.9521a46b.js.map",
     "static/js/2.440c0742.chunk.js": "/mh-things/static/js/2.440c0742.chunk.js",
     "static/js/2.440c0742.chunk.js.map": "/mh-things/static/js/2.440c0742.chunk.js.map",
     "index.html": "/mh-things/index.html",
-    "precache-manifest.0579e35b345c57df3a0b676350beb73c.js": "/mh-things/precache-manifest.0579e35b345c57df3a0b676350beb73c.js",
+    "precache-manifest.1fdea1a62cf63e74d5285338b7a59504.js": "/mh-things/precache-manifest.1fdea1a62cf63e74d5285338b7a59504.js",
     "service-worker.js": "/mh-things/service-worker.js",
-    "static/css/main.8f9ceae6.chunk.css.map": "/mh-things/static/css/main.8f9ceae6.chunk.css.map",
+    "static/css/main.51bae8a2.chunk.css.map": "/mh-things/static/css/main.51bae8a2.chunk.css.map",
     "static/js/2.440c0742.chunk.js.LICENSE.txt": "/mh-things/static/js/2.440c0742.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9521a46b.js",
     "static/js/2.440c0742.chunk.js",
-    "static/css/main.8f9ceae6.chunk.css",
-    "static/js/main.977c2c01.chunk.js"
+    "static/css/main.51bae8a2.chunk.css",
+    "static/js/main.07a9fb2e.chunk.js"
   ]
 }
