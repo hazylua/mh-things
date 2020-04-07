@@ -43,11 +43,17 @@ class ArmorSetSearch extends Component {
       });
     }
 
-    // console.log(this.state.set);
-    // skills.map(skill => {
-    //   if (skill === e.target.textContent) console.log(skill);
-    // });
+    console.log(this.state.set);
   };
+
+  onInputTextChange(e) {
+    this.setState({
+      filtered: this.state.skills.filter(
+        (skill) =>
+          skill.name.toUpperCase().indexOf(e.target.value.toUpperCase()) !== -1
+      ),
+    });
+  }
 
   render() {
     return (
@@ -55,6 +61,13 @@ class ArmorSetSearch extends Component {
         <div>
           <h1 className="page-title">Armor Set Searcher</h1>
           <div className="column">
+            <input
+              id="skill-input"
+              type="text"
+              className="skill-input"
+              placeholder="Skill Name"
+              onChange={this.onInputTextChange.bind(this)}
+            />
             <table className="skill-table">
               <thead>
                 <tr>
@@ -66,12 +79,7 @@ class ArmorSetSearch extends Component {
                   return (
                     <tr>
                       <td onClick={this.addSkill}>
-                        <p title={skill.description} className="tooltip">
-                          {skill.name}
-                          {/* <span className="tooltiptext">
-                            {skill.description}
-                          </span> */}
-                        </p>
+                        <p title={skill.description}>{skill.name}</p>
                       </td>
                     </tr>
                   );
