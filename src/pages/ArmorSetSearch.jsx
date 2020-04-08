@@ -79,7 +79,8 @@ class ArmorSetSearch extends Component {
                   return (
                     <tr>
                       <td onClick={this.addSkill}>
-                        <p title={skill.description}>{skill.name}</p>
+                        <p className="list-item">{skill.name}</p>
+                        <p>{skill.description}</p>
                       </td>
                     </tr>
                   );

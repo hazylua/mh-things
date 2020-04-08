@@ -88,6 +88,9 @@ td {
   background-color: #f0ffff;
 }
 
+.list-item {
+  font-weight: bold;
+}
 /* Default React Classes */
 
 .App {
