@@ -45,11 +45,39 @@ const About = () => (
   </div>
 )
 
-const App = () => (
-  <Router>
-    <Navbar />
-    <Main />
-  </Router>
-)
+// const App = () => (
+//   <Router>
+//     <Navbar />
+//     <Main />
+//   </Router>
+// )
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { apiResponse: "" };
+  }
+
+  callAPI() {
+    fetch("http://localhost:9000/testAPI")
+      .then(res => res.text())
+      .then(res => this.setState({ apiResponse: res }));
+  }
+
+  componentWillMount() {
+    this.callAPI();
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Router>
+          <Navbar />
+          <Main />
+        </Router>
+      </React.Fragment>
+    )
+  }
+}
 
 export default App;
