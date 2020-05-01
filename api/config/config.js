@@ -1,4 +1,5 @@
 module.exports = {
+    port: 9000,
     db: {
         database: process.env.DB_NAME || 'mh-things-db',
         user: process.env.DB_USER || 'mh-things-user',
