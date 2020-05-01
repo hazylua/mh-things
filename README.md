@@ -12,3 +12,5 @@ The "models" folder defines the options to create the models used by SQLite thro
 
 - `index.js`: creates the SQLite models through Sequelize;
 - `user.js`: define options for the user model.
+
+The "controllers" folder is used to define endpoints. The "routes" folder is used to declare routes that point to the controllers.
