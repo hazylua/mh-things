@@ -5,16 +5,16 @@ class FilterTable extends React.Component {
     super(props);
     this.state = {
       rowData: [],
-      filtered: []
+      filtered: [],
     };
   }
 
   componentDidMount() {
     fetch(
-      "https://raw.githubusercontent.com/yb00/mh-things/source/json/skill_pages.json"
+      "https://raw.githubusercontent.com/yb00/mh-things/source/client/json/skill_pages.json"
     )
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         let rows = [];
         for (let object of json) {
           let row_num = 1;
@@ -22,7 +22,7 @@ class FilterTable extends React.Component {
             rows.push({
               skill: skill,
               page: object.page,
-              row: row_num
+              row: row_num,
             });
             row_num += 1;
           }
@@ -30,7 +30,7 @@ class FilterTable extends React.Component {
 
         this.setState({
           rowData: rows,
-          filtered: rows
+          filtered: rows,
         });
       });
   }
@@ -38,9 +38,9 @@ class FilterTable extends React.Component {
   onSkillInputTextChange(e) {
     this.setState({
       filtered: this.state.rowData.filter(
-        skill =>
+        (skill) =>
           skill.skill.toUpperCase().indexOf(e.target.value.toUpperCase()) !== -1
-      )
+      ),
     });
   }
 
@@ -64,7 +64,7 @@ class FilterTable extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.filtered.map(skill => {
+            {this.state.filtered.map((skill) => {
               return (
                 <tr>
                   <td>{skill.skill}</td>
