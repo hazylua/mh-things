@@ -7,7 +7,7 @@ export default class Register extends Component {
     this.state = {
       userEmail: "",
       userPassword: "",
-      registrationError: null,
+      errorMessage: ``,
     };
   }
 
@@ -18,9 +18,8 @@ export default class Register extends Component {
         password: this.state.userPassword,
       });
     } catch (error) {
-      console.log(error.response.data);
       this.setState({
-        registrationError: error.response.data.error,
+        errorMessage: error.response.data.error,
       });
     }
   }
@@ -61,7 +60,10 @@ export default class Register extends Component {
         >
           Register
         </button>
-        <div>{this.state.registrationError}</div>
+        <div
+          style={{ textAlign: "center", color: "red" }}
+          dangerouslySetInnerHTML={{ __html: this.state.errorMessage }}
+        ></div>
       </div>
     );
   }
