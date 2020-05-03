@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import FilterTable from './pages/FilterTable'
 import ArmorSetSearch from './pages/ArmorSetSearch'
+import Register from './pages/Register'
 
 import './App.css'
 
@@ -12,6 +13,7 @@ const Navbar = () => (
       <li><Link className="navbar-link" to="/mh-things/">Home</Link></li>
       <li><Link className="navbar-link" to="/mh-things/skill-filter">Filter Page</Link></li>
       <li><Link className="navbar-link" to="/mh-things/ass">Armor Set Search</Link></li>
+      <li><Link className="navbar-link" to="/mh-things/register">Register</Link></li>
       <li><Link className="navbar-link" to="/mh-things/about">About</Link></li>
     </ul>
   </nav>
@@ -24,6 +26,7 @@ const Main = () => (
       <Route path="/mh-things/about" component={About} />
       <Route path="/mh-things/skill-filter" component={FilterTable} />
       <Route path="/mh-things/ass" component={ArmorSetSearch} />
+      <Route path="/mh-things/register" component={Register} />
     </Switch>
   </main>
 )
@@ -56,16 +59,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { apiResponse: "" };
-  }
-
-  callAPI() {
-    fetch("http://localhost:9000/testAPI")
-      .then(res => res.text())
-      .then(res => this.setState({ apiResponse: res }));
-  }
-
-  componentWillMount() {
-    this.callAPI();
   }
 
   render() {

@@ -91,6 +91,21 @@ td {
 .list-item {
   font-weight: bold;
 }
+
+.register-input {
+  margin: 0 auto;
+  padding: 1px;
+  position: relative;
+  display: block;
+}
+
+.register-button {
+  margin: 0 auto;
+  padding: 1px;
+  position: relative;
+  display: block;
+}
+
 /* Default React Classes */
 
 .App {
