@@ -1,8 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import Material from '@material-ui/core';
-
 import FilterTable from './pages/FilterTable'
 import ArmorSetSearch from './pages/ArmorSetSearch'
 import Register from './pages/Register'
