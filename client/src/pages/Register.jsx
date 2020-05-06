@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import AuthenticationService from "../services/AuthenticationService";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -12,25 +12,48 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-async function registerUser(email, pw, errorMsg) {
-  try {
-    await AuthenticationService.register({
-      email: email,
-      password: pw,
-    });
-  } catch (error) {
-    errorMsg = error.response.data.error;
-  }
+const SendRequest = (props) => {
+  const [isSending, setIsSending] = useState(false)
+  const [errorMsg, setErrorMsg] = useState(``)
+  const sendRequest = useCallback(async () => {
+    if(isSending)
+      return
+    setIsSending(true)
+    try {
+      await AuthenticationService.register({
+        email: props.email,
+        password: props.pw,
+      });
+      setErrorMsg(`<p>Registration complete.</p>`)
+    } catch (error) {
+      setErrorMsg(error.response.data.error) 
+    }
+    setIsSending(false)
+  }, [isSending])
+  return (
+    <React.Fragment>
+      <Button
+          variant="outlined"
+          disabled={isSending}
+          onClick={sendRequest}
+        >
+          Register
+        </Button>
+        <div
+    style={{ textAlign: "center" }}
+    dangerouslySetInnerHTML={{ __html: errorMsg }}
+  ></div>
+    </React.Fragment>
+  )
 }
 
 const Register = () => {
   var [userEmail, setUserEmail] = useState("");
   var [userPassword, setUserPassword] = useState("");
-  var [errorMsg, setErrorMsg] = useState([]);
   const classes = useStyles();
 
   return (
-    <div>
+    <Grid container direction="row">
       <form className={classes.root} noValidate autoCapitalize="off">
         <TextField
           value={userEmail}
@@ -38,24 +61,13 @@ const Register = () => {
           onChange={(e) => setUserEmail((userEmail = e.target.value))}
         />
         <TextField
+          value={userPassword}
           label="Password"
           onChange={(e) => setUserPassword((userPassword = e.target.value))}
         />
-        <Button
-          variant="outlined"
-          onClick={() =>
-            setErrorMsg(registerUser(userEmail, userPassword, errorMsg))
-          }
-        >
-          Register
-        </Button>
-        <div
-          style={{ textAlign: "center", color: "red" }}
-          dangerouslySetInnerHTML={{ __html: errorMsg }}
-        ></div>
+        <SendRequest email={userEmail} pw={userPassword}></SendRequest>
       </form>
-      <h1 className="page-title">Register</h1>
-    </div>
+    </Grid>
   );
 };
 
