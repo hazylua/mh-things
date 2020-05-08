@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import AuthenticationService from "../services/AuthenticationService";
-import { TextField, Button, Grid } from "@material-ui/core";
+import { TextField, Button, Grid, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -8,8 +8,8 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(1),
       width: "25ch",
-    },
-  },
+    }
+  }
 }));
 
 const SendRequest = (props) => {
@@ -26,6 +26,7 @@ const SendRequest = (props) => {
       });
       setErrorMsg(`<p>Registration complete.</p>`)
     } catch (error) {
+      console.log(props.email, props.pw)
       setErrorMsg(error.response.data.error) 
     }
     setIsSending(false)
@@ -53,21 +54,25 @@ const Register = () => {
   const classes = useStyles();
 
   return (
-    <Grid container direction="row">
-      <form className={classes.root} noValidate autoCapitalize="off">
+<Paper elevation={2} variant="outlined">
+    <Grid background container direction="row">
+      
         <TextField
           value={userEmail}
           label="Email"
+          type="email"
           onChange={(e) => setUserEmail((userEmail = e.target.value))}
         />
         <TextField
           value={userPassword}
           label="Password"
+          type="password"
           onChange={(e) => setUserPassword((userPassword = e.target.value))}
         />
-        <SendRequest email={userEmail} pw={userPassword}></SendRequest>
-      </form>
+        <SendRequest email={userEmail} pw={userPassword} key={userEmail}></SendRequest>
+     
     </Grid>
+    </Paper>
   );
 };
 
