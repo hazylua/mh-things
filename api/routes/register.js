@@ -1,16 +1,18 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var AuthenticationController = require('../controllers/AuthenticationController')
+var AuthenticationController = require("../controllers/AuthenticationController");
 
-var AuthenticationControllerPolicy = require('../policies/AutheticationControllerPolicy')
+var AuthenticationControllerPolicy = require("../policies/AutheticationControllerPolicy");
 
-router.get('/', (req, res, next) => {
-    res.send('register is working properly');
+router.get("/", (req, res, next) => {
+  res.send("register is working properly");
 });
 
-router.post('/',
-    AuthenticationControllerPolicy.register,
-    AuthenticationController.register)
+router.post(
+  "/",
+  AuthenticationControllerPolicy.register,
+  AuthenticationController.register
+);
 
 // (?)
 // router.post('/', ('register', AuthenticationController.register))
