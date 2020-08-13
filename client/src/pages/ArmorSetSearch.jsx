@@ -4,53 +4,66 @@ class ArmorSetSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      skills: [],
+      armorPieces: [],
       filtered: [],
       set: [],
     };
   }
 
   componentDidMount() {
-    fetch("https://mhw-db.com/skills")
+    fetch("https://mhw-db.com/armor")
       .then((response) => response.json())
       .then((json) => {
-        let skills = [];
+        let armorPieces = [];
         for (let object of json) {
-          skills.push({
-            name: object.name,
-            description: object.description,
-          });
+          if (object.rank == "master") {
+            armorPieces.push({
+              id: object.id,
+              name: object.name,
+              type: object.type,
+              slots: object.slots,
+              skills: object.skills,
+              armorSet: object.armorSet,
+              attributes: object.attributes,
+            });
+          }
         }
         this.setState({
-          skills: skills,
-          filtered: skills,
+          armorPieces: armorPieces,
+          filtered: armorPieces,
         });
+        console.log(this.state.armorPieces);
       });
   }
 
-  addSkill = (e) => {
-    var set = this.state.set;
-    var index = set.indexOf(e.target.textContent);
-    if (index !== -1) {
-      set.splice(index, 1);
-      this.setState({
-        set: set,
-      });
-    } else {
-      set.push(e.target.textContent);
-      this.setState({
-        set: set,
-      });
-    }
-
-    console.log(this.state.set);
+  logSkill = (e) => {
+    // var set = this.state.set;
+    // var index = set.indexOf(e.target.textContent);
+    // if (index !== -1) {
+    //   set.splice(index, 1);
+    //   this.setState({
+    //     set: set,
+    //   });
+    // } else {
+    //   set.push(e.target.textContent);
+    //   this.setState({
+    //     set: set,
+    //   });
+    // }
+    console.log(
+      this.state.armorPieces.filter((object) => {
+        return object.name === e.target.textContent;
+      })
+    );
   };
 
   onInputTextChange(e) {
     this.setState({
-      filtered: this.state.skills.filter(
-        (skill) =>
-          skill.name.toUpperCase().indexOf(e.target.value.toUpperCase()) !== -1
+      filtered: this.state.armorPieces.filter(
+        (armorPiece) =>
+          armorPiece.name
+            .toUpperCase()
+            .indexOf(e.target.value.toUpperCase()) !== -1
       ),
     });
   }
@@ -71,16 +84,16 @@ class ArmorSetSearch extends Component {
             <table className="skill-table">
               <thead>
                 <tr>
-                  <th>Skill Name</th>
+                  <th>armorPieces Name</th>
                 </tr>
               </thead>
               <tbody>
-                {this.state.filtered.map((skill) => {
+                {this.state.filtered.map((armorPieces, i) => {
                   return (
-                    <tr>
-                      <td onClick={this.addSkill}>
-                        <p className="list-item">{skill.name}</p>
-                        <p>{skill.description}</p>
+                    <tr key={i}>
+                      <td onClick={this.logSkill}>
+                        <p className="list-item">{armorPieces.name}</p>
+                        <p>{armorPieces.type}</p>
                       </td>
                     </tr>
                   );
