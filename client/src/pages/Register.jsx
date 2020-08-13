@@ -1,63 +1,94 @@
 import React, { useState, useCallback } from "react";
-import AuthenticationService from "../services/AuthenticationService";
-import { TextField, Button, Grid, Paper } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Container, Form, Button, Col } from "react-bootstrap";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    }
-  }
-}));
+import AuthenticationService from "../services/AuthenticationService";
 
 const SendRequest = (props) => {
-  const [isSending, setIsSending] = useState(false)
-  const [errorMsg, setErrorMsg] = useState(``)
+  const [isSending, setIsSending] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(``);
   const sendRequest = useCallback(async () => {
-    if(isSending)
-      return
-    setIsSending(true)
+    if (isSending) return;
+    setIsSending(true);
     try {
       await AuthenticationService.register({
         email: props.email,
         password: props.pw,
       });
-      setErrorMsg(`<p>Registration complete.</p>`)
+      setErrorMsg(`<p>Registration complete.</p>`);
     } catch (error) {
-      console.log(props.email, props.pw)
-      setErrorMsg(error.response.data.error) 
+      console.log(props.email, props.pw);
+      setErrorMsg(error.response.data.error);
     }
-    setIsSending(false)
-  }, [isSending])
+    setIsSending(false);
+  }, [isSending]);
+
   return (
     <React.Fragment>
       <Button
-          variant="outlined"
-          disabled={isSending}
-          onClick={sendRequest}
-        >
-          Register
-        </Button>
-        <div
-    style={{ textAlign: "center" }}
-    dangerouslySetInnerHTML={{ __html: errorMsg }}
-  ></div>
+        variant="outlined"
+        variant="primary"
+        type="submit"
+        disabled={isSending}
+        onClick={sendRequest}
+      >
+        Register
+      </Button>
+      <div
+        style={{ textAlign: "center" }}
+        dangerouslySetInnerHTML={{ __html: errorMsg }}
+      ></div>
     </React.Fragment>
-  )
-}
+  );
+};
 
 const Register = () => {
   var [userEmail, setUserEmail] = useState("");
   var [userPassword, setUserPassword] = useState("");
-  const classes = useStyles();
 
   return (
-<Paper elevation={2} variant="outlined">
-    <Grid background container direction="row">
-      
-        <TextField
+    <Container className="d-flex justify-content-center">
+      <Col>
+        <h2 className="text-center mb-50">Register</h2>
+        <p>
+          In the future you'll be able to register if you'd like to attach saved
+          sets and preferences to an account.
+        </p>
+        <Form.Group>
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            label="Email"
+            type="email"
+            placeholder="Enter your e-mail address"
+            onChange={(e) => setUserEmail((userEmail = e.target.value))}
+          />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            tvalue={userPassword}
+            label="Password"
+            type="password"
+            placeholder="Enter your password"
+            onChange={(e) => setUserPassword((userPassword = e.target.value))}
+          />
+        </Form.Group>
+
+        <SendRequest
+          email={userEmail}
+          pw={userPassword}
+          key={userEmail}
+        ></SendRequest>
+      </Col>
+    </Container>
+  );
+};
+
+{
+  /* <TextField
           value={userEmail}
           label="Email"
           type="email"
@@ -69,12 +100,12 @@ const Register = () => {
           type="password"
           onChange={(e) => setUserPassword((userPassword = e.target.value))}
         />
-        <SendRequest email={userEmail} pw={userPassword} key={userEmail}></SendRequest>
-     
-    </Grid>
-    </Paper>
-  );
-};
+        <SendRequest
+          email={userEmail}
+          pw={userPassword}
+          key={userEmail}
+        ></SendRequest> */
+}
 
 export default Register;
 

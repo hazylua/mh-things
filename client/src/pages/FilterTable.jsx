@@ -1,9 +1,28 @@
 import React from "react";
+import { Container, Col } from "react-bootstrap";
+
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-balham.css";
+
+const onFirstDataRendered = (params) => {
+  params.api.sizeColumnsToFit();
+};
 
 class FilterTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      columnDefs: [
+        {
+          headerName: "Skill Name",
+          field: "name",
+          sortable: true,
+          filter: true,
+        },
+        { headerName: "Page Number", field: "page", sortable: true },
+        { headerName: "Row Number", field: "row", sortable: true },
+      ],
       rowData: [],
       filtered: [],
     };
@@ -48,14 +67,40 @@ class FilterTable extends React.Component {
     return (
       <div>
         <h1 className="page-title">Filter Table</h1>
-        <input
+        {/* <input
           id="skill-input"
           type="text"
           className="skill-input"
           placeholder="Skill Name"
           onChange={this.onSkillInputTextChange.bind(this)}
-        />
-        <table className="skill-table">
+        /> */}
+        <div>
+          <Container className="d-flex justify-content-center">
+            <Col>
+              <p>For convenience.</p>
+              <div
+                className="ag-theme-balham"
+                style={{
+                  height: "250px",
+                  width: "100%",
+                }}
+              >
+                <AgGridReact
+                  onFirstDataRendered={onFirstDataRendered}
+                  columnDefs={this.state.columnDefs}
+                  rowData={this.state.filtered.map((skill) => {
+                    return {
+                      name: skill.skill,
+                      page: skill.page,
+                      row: skill.row,
+                    };
+                  })}
+                ></AgGridReact>
+              </div>
+            </Col>
+          </Container>
+        </div>
+        {/* <table className="skill-table">
           <thead>
             <tr>
               <th style={{ width: "60%" }}>Skill Name</th>
@@ -74,7 +119,7 @@ class FilterTable extends React.Component {
               );
             })}
           </tbody>
-        </table>
+        </table> */}
       </div>
     );
   }
