@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "MonHun Things",
   "main": "index.js",
+  "engines": {
+    "node": "12.16.1"
+  },
   "scripts": {
     "client": "cd client && npm run start",
     "api": "cd api && npm run start",
