@@ -15,7 +15,6 @@ var registerRouter = require('./routes/register')
 
 var app = express();
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -47,6 +46,14 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, '../client/build')))
+
+// AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../client/build/index.html'))
+})
 
 module.exports = app;
 

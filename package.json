@@ -1,0 +1,22 @@
+{
+  "name": "mh-things",
+  "version": "1.0.0",
+  "description": "MonHun Things",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm run start",
+    "api": "cd api && npm run start",
+    "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run client\"",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yb00/mh-things.git"
+  },
+  "author": "yb00",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yb00/mh-things/issues"
+  },
+  "homepage": "https://github.com/yb00/mh-things#readme"
+}
