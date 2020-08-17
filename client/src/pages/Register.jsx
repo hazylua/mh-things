@@ -16,8 +16,8 @@ const SendRequest = (props) => {
       });
       setErrorMsg(`<p>Registration complete.</p>`);
     } catch (error) {
-      console.log(props.email, props.pw);
       setErrorMsg(error.response.data.error);
+      setIsSending(false);
     }
     setIsSending(false);
   }, [isSending]);
@@ -25,7 +25,6 @@ const SendRequest = (props) => {
   return (
     <React.Fragment>
       <Button
-        variant="outlined"
         variant="primary"
         type="submit"
         disabled={isSending}
@@ -46,9 +45,9 @@ const Register = () => {
   var [userPassword, setUserPassword] = useState("");
 
   return (
-    <Container className="d-flex justify-content-center">
+    <Container>
       <Col>
-        <h2 className="text-center mb-50">Register</h2>
+        <h2>Register</h2>
         <p>
           In the future you'll be able to register if you'd like to attach saved
           sets and preferences to an account.
@@ -87,8 +86,7 @@ const Register = () => {
   );
 };
 
-{
-  /* <TextField
+/* <TextField
           value={userEmail}
           label="Email"
           type="email"
@@ -105,7 +103,6 @@ const Register = () => {
           pw={userPassword}
           key={userEmail}
         ></SendRequest> */
-}
 
 export default Register;
 

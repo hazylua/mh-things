@@ -1,9 +1,9 @@
 import React from "react";
-import { Container, Col } from "react-bootstrap";
+import { Container, Col, Form, InputGroup, FormControl } from "react-bootstrap";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-balham.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
 
 const onFirstDataRendered = (params) => {
   params.api.sizeColumnsToFit();
@@ -18,7 +18,6 @@ class FilterTable extends React.Component {
           headerName: "Skill Name",
           field: "name",
           sortable: true,
-          filter: true,
         },
         { headerName: "Page Number", field: "page", sortable: true },
         { headerName: "Row Number", field: "row", sortable: true },
@@ -65,62 +64,50 @@ class FilterTable extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1 className="page-title">Filter Table</h1>
-        {/* <input
-          id="skill-input"
-          type="text"
-          className="skill-input"
-          placeholder="Skill Name"
-          onChange={this.onSkillInputTextChange.bind(this)}
-        /> */}
-        <div>
-          <Container className="d-flex justify-content-center">
-            <Col>
-              <p>For convenience.</p>
-              <div
-                className="ag-theme-balham"
-                style={{
-                  height: "250px",
-                  width: "100%",
-                }}
-              >
-                <AgGridReact
-                  onFirstDataRendered={onFirstDataRendered}
-                  columnDefs={this.state.columnDefs}
-                  rowData={this.state.filtered.map((skill) => {
-                    return {
-                      name: skill.skill,
-                      page: skill.page,
-                      row: skill.row,
-                    };
-                  })}
-                ></AgGridReact>
-              </div>
-            </Col>
-          </Container>
-        </div>
-        {/* <table className="skill-table">
-          <thead>
-            <tr>
-              <th style={{ width: "60%" }}>Skill Name</th>
-              <th style={{ width: "20%" }}>Page Number</th>
-              <th style={{ width: "20%" }}>Row Number</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.filtered.map((skill) => {
-              return (
-                <tr>
-                  <td>{skill.skill}</td>
-                  <td>{skill.page}</td>
-                  <td>{skill.row}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table> */}
-      </div>
+      <Container>
+        <Col>
+          <h2>Filter Table</h2>
+          <p>For convenience.</p>
+          <Form>
+            <InputGroup>
+              <InputGroup.Prepend>
+                <InputGroup.Text>
+                  <i className="fa fa-search"></i>
+                </InputGroup.Text>
+              </InputGroup.Prepend>
+              <FormControl
+                id="skill-input"
+                type="text"
+                className="input-group-text justify-content-center"
+                placeholder="Skill Name"
+                onChange={this.onSkillInputTextChange.bind(this)}
+                size="lg"
+                type="text"
+                placeholder="Skill name"
+              ></FormControl>
+            </InputGroup>
+          </Form>
+          <div
+            className="ag-theme-alpine-dark"
+            style={{
+              height: "1000px",
+              width: "100%",
+            }}
+          >
+            <AgGridReact
+              onFirstDataRendered={onFirstDataRendered}
+              columnDefs={this.state.columnDefs}
+              rowData={this.state.filtered.map((skill) => {
+                return {
+                  name: skill.skill,
+                  page: skill.page,
+                  row: skill.row,
+                };
+              })}
+            ></AgGridReact>
+          </div>
+        </Col>
+      </Container>
     );
   }
 }

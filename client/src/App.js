@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -10,39 +10,54 @@ import Register from "./pages/Register";
 import "./App.css";
 
 const Navbar = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link className="navbar-link" to="/mh-things/">
-          Home
-        </Link>
-      </li>
-      <li>
-        <Link className="navbar-link" to="/mh-things/skill-filter">
-          Filter Page
-        </Link>
-      </li>
-      <li>
-        <Link className="navbar-link" to="/mh-things/ass">
-          Armor Set Searcher
-        </Link>
-      </li>
-      <li>
-        <Link className="navbar-link" to="/mh-things/register">
-          Register
-        </Link>
-      </li>
-      <li>
-        <Link className="navbar-link" to="/mh-things/about">
-          About
-        </Link>
-      </li>
-    </ul>
-  </nav>
+  <div className="header">
+    <div className="header-title"
+    >
+      <NavLink
+        style={{
+          display: "flex",
+          alignItems: "center",
+          textDecoration: "none",
+        }}
+        to="/mh-things"
+      >
+        <h1>MH_THINGS</h1>
+      </NavLink>
+    </div>
+    <nav className="header-nav">
+      <ul>
+        <li>
+          <NavLink className="navbar-link" activeClassName="navbar-link-active" exact to="/mh-things">
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className="navbar-link" activeClassName="navbar-link-active" to="/mh-things/skill-filter">
+            Filter Page
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className="navbar-link" activeClassName="navbar-link-active" to="/mh-things/ass">
+            Armor Set Searcher
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className="navbar-link" activeClassName="navbar-link-active" to="/mh-things/register">
+            Register
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className="navbar-link" activeClassName="navbar-link-active" to="/mh-things/about">
+            About
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
+  </div>
 );
 
 const Main = () => (
-  <main>
+  <div>
     <Switch>
       <Route exact path="/mh-things" component={Home} />
       <Route path="/mh-things/about" component={About} />
@@ -50,106 +65,70 @@ const Main = () => (
       <Route path="/mh-things/ass" component={ArmorSetSearcher} />
       <Route path="/mh-things/register" component={Register} />
     </Switch>
-  </main>
+  </div>
 );
 
 const Home = () => (
-  <div>
-    <h1 className="page-title">Home Page</h1>
-    <Container>
-      <Row>
-        <Col>
-          <div>
-            <h5>What is this?</h5>
-            <p>
-              A webpage with a collection of assorted tools related to the game
-              Monster Hunter World: Iceborne.
+  <Container>
+    <Row>
+      <Col className="content-panels" style={{ marginRight: "10px" }}>
+        <div>
+          <h4>What is this?</h4>
+          <p>
+            A webpage with a collection of assorted tools related to the Monster Hunter series.
             </p>
-            <p>
-              At the moment the page is incomplete, but there's a filter page
-              that let's you find the location of a skill from the decoration
-              filter page. An armor set searcher is also planned to be
-              implemented.
+          <p>
+            At the moment the page is incomplete, but there's a filter page
+            that let's you find the location of a skill from the decoration
+            filter page. An armor set searcher is also planned to be
+            implemented.
             </p>
+        </div>
+      </Col>
+      <Col className="content-panels" style={{ marginLeft: "10px" }}>
+        <div>
+          <h4>Other</h4>
+          <p>Other websites you might want to check out:</p>
+          <div style={{ display: "grid" }}>
+            <a href="https://mhworld.kiranico.com/">
+              https://mhworld.kiranico.com/</a>
+            <a href="https://mhw.wiki-db.com/sim/?hl=en">
+              https://mhw.wiki-db.com/sim/?hl=en</a>
+            <a href="https://mhwleaderboards.com/">
+              https://mhwleaderboards.com/</a>
           </div>
-        </Col>
-        <Col>
-          <h5>Other</h5>
-          <div>
-            <p>Other websites you can check out:</p>
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <a href="https://mhwleaderboards.com/rules">
-                      https://mhwleaderboards.com/rules
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <a href="https://honeyhunterworld.com/">
-                      https://honeyhunterworld.com/
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <a href="https://mhw.wiki-db.com/sim/?hl=en">
-                      https://mhw.wiki-db.com/sim/?hl=en
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </Col>
-      </Row>
-    </Container>
-  </div>
+        </div>
+      </Col>
+    </Row>
+  </Container>
 );
 
 const About = () => (
-  <div>
-    <h2 className="page-title">About</h2>
-
-    <p>
-      If you want to take a look at how this page works go to it's repository
-      at:
-    </p>
-    <p>
-      <a href="https://github.com/yb00/mh-things">
+  <Container>
+    <Col>
+      <h2>
+        About:
+    </h2>
+      <p>Source code for this page is here: <a href="https://github.com/yb00/mh-things">
         https://github.com/yb00/mh-things
-      </a>
-    </p>
-  </div>
-);
+      </a></p>
 
-// const App = () => (
-//   <Router>
-//     <Navbar />
-//     <Main />
-//   </Router>
-// )
+    </Col>
+  </Container>
+);
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { apiResponse: "" };
   }
-  componentDidMount() {
-    const titles = ["MonHun Things"];
-    document.title = titles[Math.floor(Math.random() * titles.length)];
-  }
 
   render() {
     return (
-      <React.Fragment>
-        <Router>
-          <Navbar />
-          <Main />
-        </Router>
-      </React.Fragment>
+      <Router>
+        <Navbar />
+        <Main />
+      </Router>
     );
   }
 }
