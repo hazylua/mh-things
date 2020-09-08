@@ -9,9 +9,8 @@ var cors = require("cors");
 var http = require('http');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var testAPIRouter = require('./routes/testAPI');
 var registerRouter = require('./routes/register')
+var loginRouter = require('./routes/login')
 
 var app = express();
 
@@ -27,9 +26,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/testAPI', testAPIRouter)
 app.use('/register', registerRouter)
+app.use('/login', loginRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -47,13 +46,13 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, '../client/build')))
+// // Serve static files from the React frontend app
+// app.use(express.static(path.join(__dirname, '../client/build')))
 
-// AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/../client/build/index.html'))
-})
+// // AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname + '/../client/build/index.html'))
+// })
 
 module.exports = app;
 
