@@ -43,7 +43,7 @@ const Navbar = () => (
         </li>
         <li>
           <NavLink className="navbar-link" activeClassName="navbar-link-active" to="/mh-things/register">
-            Register
+            Sign Up/In
           </NavLink>
         </li>
         <li>
