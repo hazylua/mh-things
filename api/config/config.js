@@ -11,4 +11,7 @@ module.exports = {
       storage: process.env.DIALECT || "./mh-things.sqlite",
     },
   },
+  authentication: {
+    webtokenSecret: process.env.JWT_SECRET || 'secret'
+  }
 };
