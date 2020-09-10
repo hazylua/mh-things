@@ -117,18 +117,11 @@ const About = () => (
   </Container>
 );
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { apiResponse: "" };
-  }
-
-  render() {
-    return (
-      <Router>
-        <Navbar />
-        <Main />
-      </Router>
+const App = () => (
+  <Router>
+    <Navbar />
+    <Main />
+  </Router>
     );
   }
 }
