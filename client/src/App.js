@@ -122,8 +122,6 @@ const App = () => (
     <Navbar />
     <Main />
   </Router>
-    );
-  }
-}
+)
 
 export default App;
