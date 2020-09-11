@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from "react-router-dom";
 
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -11,8 +16,7 @@ import "./App.css";
 
 const Navbar = () => (
   <div className="header">
-    <div className="header-title"
-    >
+    <div className="header-title">
       <NavLink
         style={{
           display: "flex",
@@ -27,27 +31,48 @@ const Navbar = () => (
     <nav className="header-nav">
       <ul>
         <li>
-          <NavLink className="navbar-link" activeClassName="navbar-link-active" exact to="/mh-things">
+          <NavLink
+            className="navbar-link"
+            activeClassName="navbar-link-active"
+            exact
+            to="/mh-things"
+          >
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink className="navbar-link" activeClassName="navbar-link-active" to="/mh-things/skill-filter">
+          <NavLink
+            className="navbar-link"
+            activeClassName="navbar-link-active"
+            to="/mh-things/skill-filter"
+          >
             Filter Page
           </NavLink>
         </li>
         <li>
-          <NavLink className="navbar-link" activeClassName="navbar-link-active" to="/mh-things/ass">
+          <NavLink
+            className="navbar-link"
+            activeClassName="navbar-link-active"
+            to="/mh-things/ass"
+          >
             Armor Set Searcher
           </NavLink>
         </li>
         <li>
-          <NavLink className="navbar-link" activeClassName="navbar-link-active" to="/mh-things/register">
+          <NavLink
+            className="navbar-link"
+            activeClassName="navbar-link-active"
+            to="/mh-things/register"
+          >
             Sign Up/In
           </NavLink>
         </li>
         <li>
-          <NavLink className="navbar-link" activeClassName="navbar-link-active" to="/mh-things/about">
+          <NavLink
+            className="navbar-link"
+            activeClassName="navbar-link-active"
+            to="/mh-things/about"
+          >
             About
           </NavLink>
         </li>
@@ -75,14 +100,14 @@ const Home = () => (
         <div>
           <h4>What is this?</h4>
           <p>
-            A webpage with a collection of assorted tools related to the Monster Hunter series.
-            </p>
+            A webpage with a collection of assorted tools related to the Monster
+            Hunter series.
+          </p>
           <p>
-            At the moment the page is incomplete, but there's a filter page
-            that let's you find the location of a skill from the decoration
-            filter page. An armor set searcher is also planned to be
-            implemented.
-            </p>
+            At the moment the page is incomplete, but there's a filter page that
+            let's you find the location of a skill from the decoration filter
+            page. An armor set searcher is also planned to be implemented.
+          </p>
         </div>
       </Col>
       <Col className="content-panels" style={{ marginLeft: "10px" }}>
@@ -91,11 +116,14 @@ const Home = () => (
           <p>Other websites you might want to check out:</p>
           <div style={{ display: "grid" }}>
             <a href="https://mhworld.kiranico.com/">
-              https://mhworld.kiranico.com/</a>
+              https://mhworld.kiranico.com/
+            </a>
             <a href="https://mhw.wiki-db.com/sim/?hl=en">
-              https://mhw.wiki-db.com/sim/?hl=en</a>
+              https://mhw.wiki-db.com/sim/?hl=en
+            </a>
             <a href="https://mhwleaderboards.com/">
-              https://mhwleaderboards.com/</a>
+              https://mhwleaderboards.com/
+            </a>
           </div>
         </div>
       </Col>
@@ -106,13 +134,13 @@ const Home = () => (
 const About = () => (
   <Container>
     <Col>
-      <h2>
-        About:
-    </h2>
-      <p>Source code for this page is here: <a href="https://github.com/yb00/mh-things">
-        https://github.com/yb00/mh-things
-      </a></p>
-
+      <h2>About:</h2>
+      <p>
+        Source code for this page is here:{" "}
+        <a href="https://github.com/yb00/mh-things">
+          https://github.com/yb00/mh-things
+        </a>
+      </p>
     </Col>
   </Container>
 );
@@ -122,6 +150,6 @@ const App = () => (
     <Navbar />
     <Main />
   </Router>
-)
+);
 
 export default App;
