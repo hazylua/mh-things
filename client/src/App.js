@@ -5,12 +5,11 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
-
 import { Container, Row, Col } from "react-bootstrap";
 
-import FilterTable from "./pages/FilterTable";
-import ArmorSetSearcher from "./pages/ArmorSetSearcher";
-import Register from "./pages/Register";
+import FilterTable from "./pages/FilterTablePage";
+import ArmorSetSearcher from "./pages/SetSearcherPage";
+import Authentication from "./pages/AuthPage";
 
 import "./App.css";
 
@@ -23,7 +22,7 @@ const Navbar = () => (
           alignItems: "center",
           textDecoration: "none",
         }}
-        to="/mh-things"
+        to="/"
       >
         <h1>MH_THINGS</h1>
       </NavLink>
@@ -35,7 +34,7 @@ const Navbar = () => (
             className="navbar-link"
             activeClassName="navbar-link-active"
             exact
-            to="/mh-things"
+            to="/"
           >
             Home
           </NavLink>
@@ -44,7 +43,7 @@ const Navbar = () => (
           <NavLink
             className="navbar-link"
             activeClassName="navbar-link-active"
-            to="/mh-things/skill-filter"
+            to="/skill-filter"
           >
             Filter Page
           </NavLink>
@@ -53,7 +52,7 @@ const Navbar = () => (
           <NavLink
             className="navbar-link"
             activeClassName="navbar-link-active"
-            to="/mh-things/ass"
+            to="/ass"
           >
             Armor Set Searcher
           </NavLink>
@@ -62,7 +61,7 @@ const Navbar = () => (
           <NavLink
             className="navbar-link"
             activeClassName="navbar-link-active"
-            to="/mh-things/register"
+            to="/auth"
           >
             Sign Up/In
           </NavLink>
@@ -71,7 +70,7 @@ const Navbar = () => (
           <NavLink
             className="navbar-link"
             activeClassName="navbar-link-active"
-            to="/mh-things/about"
+            to="/about"
           >
             About
           </NavLink>
@@ -84,11 +83,11 @@ const Navbar = () => (
 const Main = () => (
   <div>
     <Switch>
-      <Route exact path="/mh-things" component={Home} />
-      <Route path="/mh-things/about" component={About} />
-      <Route path="/mh-things/skill-filter" component={FilterTable} />
-      <Route path="/mh-things/ass" component={ArmorSetSearcher} />
-      <Route path="/mh-things/register" component={Register} />
+      <Route exact path="/" component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/skill-filter" component={FilterTable} />
+      <Route path="/ass" component={ArmorSetSearcher} />
+      <Route path="/auth" component={Authentication} />
     </Switch>
   </div>
 );
@@ -136,13 +135,14 @@ const About = () => (
     <Col>
       <h2>About:</h2>
       <p>
-        Source code for this page is here:{" "}
+        Source code for this page is here:
+        <br />
         <a href="https://github.com/yb00/mh-things">
           https://github.com/yb00/mh-things
         </a>
       </p>
     </Col>
-  </Container>
+  </Container >
 );
 
 const App = () => (

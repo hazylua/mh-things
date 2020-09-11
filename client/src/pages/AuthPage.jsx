@@ -1,11 +1,10 @@
-import React, { useState, useCallback } from "react";
-import { Container, Form, Button, Col, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Form, Col, Row } from "react-bootstrap";
 
-import AuthenticationService from "../services/AuthenticationService";
 import RegisterRequest from "../components/RegisterRequest";
 import LoginRequest from "../components/LoginRequest";
 
-const Register = () => {
+const Authentication = () => {
   var [userEmail, setUserEmail] = useState("");
   var [userPassword, setUserPassword] = useState("");
   var [loginEmail, setLoginEmail] = useState("");
@@ -51,6 +50,7 @@ const Register = () => {
             key={userEmail}
           ></RegisterRequest>
         </Col>
+
         {/* Sign In */}
         <Col className="content-panels" style={{ marginLeft: "10px" }}>
           <h2>Sign In</h2>
@@ -87,4 +87,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Authentication;

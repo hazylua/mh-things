@@ -3,6 +3,8 @@ import { Container, Form, Button, Col, Row } from "react-bootstrap";
 
 import AuthenticationService from "../services/AuthenticationService";
 
+import { connect } from "react-redux";
+
 const LoginRequest = (props) => {
   const [isSending, setIsSending] = useState(false);
   const [resMsg, setResMsg] = useState(``);
@@ -10,11 +12,12 @@ const LoginRequest = (props) => {
     if (isSending) return;
     setIsSending(true);
     try {
-      await AuthenticationService.login({
+      const response = await AuthenticationService.login({
         email: props.email,
         password: props.pw,
+      }).then(() => {
+        setResMsg(`<p>Login successful.</p>`);
       });
-      setResMsg(`<p>Login successful.</p>`);
     } catch (error) {
       setResMsg(error.response.data.error);
       setIsSending(false);
@@ -41,4 +44,4 @@ const LoginRequest = (props) => {
   );
 };
 
-export default LoginRequest;
+export default connect(null)(LoginRequest);

@@ -8,6 +8,7 @@ import {
   InputGroup,
 } from "react-bootstrap";
 
+import SkillMapper from "../components/SkillMapper";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
@@ -109,6 +110,7 @@ const ArmorSetSearcher = () => {
           </div>
         </Col>
       </Row>
+      <SkillMapper></SkillMapper>
     </Container>
   );
 };
