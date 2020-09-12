@@ -1,4 +1,7 @@
-const About = () => (
+import React from "react";
+import { Container, Form, Col, Row, Button } from "react-bootstrap";
+
+const AboutPage = () => (
   <Container>
     <Col>
       <h2>About:</h2>
@@ -11,3 +14,5 @@ const About = () => (
     </Col>
   </Container>
 );
+
+export default AboutPage;

@@ -5,10 +5,14 @@ import RegisterRequest from "../components/RegisterRequest";
 import LoginRequest from "../components/LoginRequest";
 
 const Authentication = () => {
-  var [userEmail, setUserEmail] = useState("");
-  var [userPassword, setUserPassword] = useState("");
-  var [loginEmail, setLoginEmail] = useState("");
-  var [loginPassword, setLoginPassword] = useState("");
+  var [registerForm, setRegisterForm] = useState({
+    user: "",
+    password: "",
+  });
+  var [loginForm, setLoginForm] = useState({
+    user: "",
+    password: "",
+  });
 
   return (
     <Container>
@@ -26,7 +30,9 @@ const Authentication = () => {
               label="Email"
               type="email"
               placeholder="Enter your e-mail address"
-              onChange={(e) => setUserEmail((userEmail = e.target.value))}
+              onChange={(e) =>
+                setRegisterForm({ ...registerForm, user: e.target.value })
+              }
             />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
@@ -36,51 +42,47 @@ const Authentication = () => {
           <Form.Group>
             <Form.Label>Password</Form.Label>
             <Form.Control
-              tvalue={userPassword}
+              tvalue={registerForm.password}
               label="Password"
               type="password"
               placeholder="Enter your password"
-              onChange={(e) => setUserPassword((userPassword = e.target.value))}
+              onChange={(e) =>
+                setRegisterForm({ ...registerForm, password: e.target.value })
+              }
             />
           </Form.Group>
 
-          <RegisterRequest
-            email={userEmail}
-            pw={userPassword}
-            key={userEmail}
-          ></RegisterRequest>
+          <RegisterRequest form={registerForm}></RegisterRequest>
         </Col>
 
         {/* Sign In */}
         <Col className="content-panels" style={{ marginLeft: "10px" }}>
           <h2>Sign In</h2>
-          <p>Login with your registered information.</p>
+          <p>Login with your user information.</p>
           <Form.Group>
             <Form.Label>Email address</Form.Label>
             <Form.Control
               label="Email"
               type="email"
-              onChange={(e) => setUserEmail((loginEmail = e.target.value))}
+              onChange={(e) =>
+                setLoginForm({ ...loginForm, user: e.target.value })
+              }
             />
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Password</Form.Label>
             <Form.Control
-              tvalue={userPassword}
+              tvalue={loginForm.password}
               label="Password"
               type="password"
               onChange={(e) =>
-                setUserPassword((loginPassword = e.target.value))
+                setLoginForm({ ...loginForm, password: e.target.value })
               }
             />
           </Form.Group>
 
-          <LoginRequest
-            email={userEmail}
-            pw={userPassword}
-            key={userEmail}
-          ></LoginRequest>
+          <LoginRequest form={loginForm}></LoginRequest>
         </Col>
       </Row>
     </Container>

@@ -1,4 +1,7 @@
-const Home = () => (
+import React from "react";
+import { Container, Form, Col, Row, Button } from "react-bootstrap";
+
+const HomePage = () => (
   <Container>
     <Row>
       <Col className="content-panels" style={{ marginRight: "10px" }}>
@@ -35,3 +38,5 @@ const Home = () => (
     </Row>
   </Container>
 );
+
+export default HomePage;

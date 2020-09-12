@@ -7,9 +7,12 @@ import {
 } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
-import FilterTable from "./pages/FilterTablePage";
-import ArmorSetSearcher from "./pages/SetSearcherPage";
-import Authentication from "./pages/AuthPage";
+import HomePage from "../pages/HomePage"
+import AboutPage from "../pages/AboutPage"
+import FilterTable from "../pages/FilterTablePage";
+import ArmorSetSearcher from "../pages/SetSearcherPage";
+import LoginPage from "../pages/LoginPage"
+import RegisterPage from "../pages/RegisterPage"
 
 import "./App.css";
 
@@ -61,9 +64,18 @@ const Navbar = () => (
           <NavLink
             className="navbar-link"
             activeClassName="navbar-link-active"
-            to="/auth"
+            to="/register"
           >
-            Sign Up/In
+            Register
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className="navbar-link"
+            activeClassName="navbar-link-active"
+            to="/login"
+          >
+            Login
           </NavLink>
         </li>
         <li>
@@ -75,6 +87,7 @@ const Navbar = () => (
             About
           </NavLink>
         </li>
+
       </ul>
     </nav>
   </div>
@@ -83,66 +96,14 @@ const Navbar = () => (
 const Main = () => (
   <div>
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
+      <Route exact path="/" component={HomePage} />
       <Route path="/skill-filter" component={FilterTable} />
       <Route path="/ass" component={ArmorSetSearcher} />
-      <Route path="/auth" component={Authentication} />
+      <Route path="/login" component={LoginPage} />
+      <Route path="/register" component={RegisterPage} />
+      <Route path="/about" component={AboutPage} />
     </Switch>
   </div>
-);
-
-const Home = () => (
-  <Container>
-    <Row>
-      <Col className="content-panels" style={{ marginRight: "10px" }}>
-        <div>
-          <h4>What is this?</h4>
-          <p>
-            A webpage with a collection of assorted tools related to the Monster
-            Hunter series.
-          </p>
-          <p>
-            At the moment the page is incomplete, but there's a filter page that
-            let's you find the location of a skill from the decoration filter
-            page. An armor set searcher is also planned to be implemented.
-          </p>
-        </div>
-      </Col>
-      <Col className="content-panels" style={{ marginLeft: "10px" }}>
-        <div>
-          <h4>Other</h4>
-          <p>Other websites you might want to check out:</p>
-          <div style={{ display: "grid" }}>
-            <a href="https://mhworld.kiranico.com/">
-              https://mhworld.kiranico.com/
-            </a>
-            <a href="https://mhw.wiki-db.com/sim/?hl=en">
-              https://mhw.wiki-db.com/sim/?hl=en
-            </a>
-            <a href="https://mhwleaderboards.com/">
-              https://mhwleaderboards.com/
-            </a>
-          </div>
-        </div>
-      </Col>
-    </Row>
-  </Container>
-);
-
-const About = () => (
-  <Container>
-    <Col>
-      <h2>About:</h2>
-      <p>
-        Source code for this page is here:
-        <br />
-        <a href="https://github.com/yb00/mh-things">
-          https://github.com/yb00/mh-things
-        </a>
-      </p>
-    </Col>
-  </Container >
 );
 
 const App = () => (
