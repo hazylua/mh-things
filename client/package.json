@@ -1,5 +1,4 @@
 {
-  "homepage": "https://yb00.github.io/mh-things/",
   "name": "mh-things",
   "version": "0.1.0",
   "proxy": "http://localhost:9000",
