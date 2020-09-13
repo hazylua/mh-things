@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Container, Form, Col, Button } from "react-bootstrap";
 
+import { useSelector, useDispatch } from "react-redux";
+
 import AuthenticationService from "../services/AuthenticationService";
 
 const LoginPage = () => {
@@ -11,6 +13,9 @@ const LoginPage = () => {
     password: "",
   });
 
+  const token = useSelector((state) => state.token);
+  const dispatch = useDispatch();
+
   const handleLogin = async () => {
     if (isSending) return;
     else {
@@ -20,8 +25,14 @@ const LoginPage = () => {
           email: loginForm.user,
           password: loginForm.password,
         });
-        setResMsg(`Login successful.`);
+        await dispatch({
+          token: response.data.token,
+          type: "SET_TOKEN",
+        });
+        console.log(token, response.data.token);
+        setResMsg(`Token: ${token}`);
       } catch (error) {
+        console.log(error);
         if (error.response) setResMsg(error.response.data.error);
         else
           setResMsg(
