@@ -4,12 +4,12 @@
 }
 
 body {
+  /* box-sizing: border-box; */
   background: rgb(49, 49, 49);
   color: #fff;
-  /* box-sizing: border-box; */
+  font-family: UI, Roboto, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.35;
-  font-family: UI, Roboto, Helvetica, sans-serif;
 }
 
 a,
@@ -19,16 +19,16 @@ a:hover {
 }
 
 nav {
-  min-height: 30px;
-  margin-bottom: 10px;
   font-size: 16px;
+  margin-bottom: 10px;
+  min-height: 30px;
 }
 
 nav ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
   overflow: hidden;
+  padding: 0;
 }
 
 nav li {
@@ -38,9 +38,9 @@ nav li {
 /* My Classes */
 
 .navbar-link {
+  color: rgb(190, 190, 190);
   display: block;
   padding: 15px;
-  color: rgb(190, 190, 190);
   text-decoration: none;
 }
 
@@ -49,22 +49,22 @@ nav li {
 }
 
 .navbar-link-active {
-  color: #fff;
   border-bottom: 3px solid #fff;
+  color: #fff;
 }
 
 .register-input {
+  display: block;
   margin: 0 auto;
   padding: 1px;
   position: relative;
-  display: block;
 }
 
 .register-button {
+  display: block;
   margin: 0 auto;
   padding: 1px;
   position: relative;
-  display: block;
 }
 
 .header {
@@ -72,8 +72,8 @@ nav li {
 }
 
 .header-title {
-  max-width: 1000px;
   margin: 0px auto;
+  max-width: 1000px;
   padding: 20px 15px 0px;
 }
 
@@ -82,32 +82,32 @@ nav li {
 }
 
 .header-nav {
-  max-width: 1000px;
   margin: 0px auto;
+  max-width: 1000px;
 }
 
 .container {
-  margin: 0px;
   justify-content: center;
-  max-width: 1000px;
-  padding: 20px 0px 0px;
   margin: 0px auto;
+  margin: 0px;
+  max-width: 1000px;
   min-height: 1000px;
+  padding: 20px 0px 0px;
 }
 
 .col {
+  background: #535353;
+  border-radius: 15px;
   margin: 0px;
   padding: 30px;
-  border-radius: 15px;
-  background: #535353;
 }
 
 .col h2 {
-  margin-bottom: 20px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .col h4 {
-  margin-bottom: 20px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
