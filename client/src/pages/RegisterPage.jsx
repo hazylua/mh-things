@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Container, Form, Col, Button } from "react-bootstrap";
 
+import { useSelector, useDispatch } from "react-redux";
+
 import AuthenticationService from "../services/AuthenticationService";
 
 const RegisterPage = () => {
@@ -11,6 +13,9 @@ const RegisterPage = () => {
     password: "",
   });
 
+  const token = useSelector((state) => state.token);
+  const dispatch = useDispatch();
+
   const handleRegister = async () => {
     if (isSending) return;
     else {
@@ -19,6 +24,10 @@ const RegisterPage = () => {
         const response = await AuthenticationService.register({
           email: registerForm.user,
           password: registerForm.password,
+        });
+        await dispatch({
+          token: response.data.token,
+          type: "SET_TOKEN",
         });
         setResMsg(`Registration succesful.`);
       } catch (error) {

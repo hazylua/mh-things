@@ -14,6 +14,7 @@ const LoginPage = () => {
   });
 
   const token = useSelector((state) => state.token);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
@@ -26,17 +27,20 @@ const LoginPage = () => {
           password: loginForm.password,
         });
         await dispatch({
-          token: response.data.token,
+          payload: response.data,
           type: "SET_TOKEN",
         });
-        console.log(token, response.data.token);
-        setResMsg(`Token: ${token}`);
+        setResMsg(`Login succesful.`);
       } catch (error) {
-        console.log(error);
         if (error.response) setResMsg(error.response.data.error);
         else
           setResMsg(
-            `There was an error with the server. Please try again later.`
+            `There was an error with the server. Please try again later.
+            <br/>
+            Error info:
+            <br/>
+            ${error}
+            `
           );
       }
       setIsSending(false);
@@ -80,6 +84,7 @@ const LoginPage = () => {
         >
           Login
         </Button>
+
         <div
           style={{ textAlign: "center" }}
           dangerouslySetInnerHTML={{ __html: resMsg }}
