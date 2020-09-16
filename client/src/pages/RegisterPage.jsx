@@ -26,7 +26,7 @@ const RegisterPage = () => {
           password: registerForm.password,
         });
         await dispatch({
-          token: response.data.token,
+          payload: response.data,
           type: "SET_TOKEN",
         });
         setResMsg(`Registration succesful.`);
@@ -34,7 +34,12 @@ const RegisterPage = () => {
         if (error.response) setResMsg(error.response.data.error);
         else
           setResMsg(
-            `There was an error with the server. Please try again later.`
+            `There was an error with the server. Please try again later.
+            <br/>
+            Error info:
+            <br/>
+            <b>${error}</b>
+            `
           );
       }
       setIsSending(false);
