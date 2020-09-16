@@ -39,7 +39,7 @@ const LoginPage = () => {
             <br/>
             Error info:
             <br/>
-            ${error}
+            <b>${error}</b>
             `
           );
       }

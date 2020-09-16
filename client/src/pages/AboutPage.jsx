@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Form, Col, Row, Button } from "react-bootstrap";
+import { Container, Col } from "react-bootstrap";
 
 const AboutPage = () => (
   <Container>
