@@ -46,8 +46,16 @@ const ArmorSetSearcher = () => {
   }, []);
 
   return (
-    <Container>
-      <Row style={{ marginBottom: "20px" }}>
+    <Container style={{ margin: "0", display: "flex", flexDirection: "row" }}>
+      <Container>
+        <Col>
+          <h1 style={{ color: "black" }}>Settings:</h1>
+          12312321
+        </Col>
+      </Container>
+      <Container
+        style={{ marginLeft: "20px", display: "flex", flexDirection: "row" }}
+      >
         <Col>
           <h2>Armor Set Searcher</h2>
           <p>
@@ -91,8 +99,7 @@ const ArmorSetSearcher = () => {
             ></AgGridReact>
           </div>
         </Col>
-      </Row>
-      <Row>
+
         <Col>
           <p>Chosen skills:</p>
           <div className="ag-theme-alpine-dark" style={{ height: "500px" }}>
@@ -109,8 +116,9 @@ const ArmorSetSearcher = () => {
             ></AgGridReact>
           </div>
         </Col>
-      </Row>
-      <SkillMapper></SkillMapper>
+
+        <SkillMapper></SkillMapper>
+      </Container>
     </Container>
   );
 };
