@@ -89,7 +89,6 @@ nav li {
 .container {
   justify-content: center;
   margin: 0px auto;
-  margin: 0px;
   max-width: 1000px;
   min-height: 1000px;
   padding: 20px 0px 0px;
@@ -97,7 +96,7 @@ nav li {
 
 .col {
   background: #535353;
-  border-radius: 15px;
+  min-width: 500px;
   margin: 0px;
   padding: 30px;
 }
