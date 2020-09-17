@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 
 const SkillMapper = (props) => {
-  const [map, mapAdd] = useState([]);
   const [maps, mapsAdd] = useState([
     {
       name: "data",
@@ -42,16 +41,6 @@ const SkillMapper = (props) => {
   useEffect(() => {
     let isSubscribed = true;
 
-    // fetch("https://mh-files.herokuapp.com/assets/skillmap.json")
-    //   .then((response) => response.json())
-    //   .then((json) => {
-    //     if (isSubscribed) {
-    //       mapAdd(json);
-    //     } else {
-    //       return null;
-    //     }
-    //   });
-
     Promise.all(
       maps.map((map) => {
         return fetch(map.url)
@@ -70,27 +59,32 @@ const SkillMapper = (props) => {
 
       for (let s in search) {
         for (let a of data["master"][s]) {
-          inventoryAdd(inventory[a[1]].push(a));
+          inventoryAdd(inventory, inventory[a[1]].push(a));
         }
       }
 
-      inventoryAdd(inventory["head"].push([0, 0, 0]));
-      inventoryAdd(inventory["chest"].push([0, 0, 0]));
-      inventoryAdd(inventory["gloves"].push([0, 0, 0]));
-      inventoryAdd(inventory["waist"].push([0, 0, 0]));
-      inventoryAdd(inventory["legs"].push([0, 0, 0]));
-      inventoryAdd(inventory["charm"].push([0, 0, 0]));
+      inventoryAdd(inventory, inventory["head"].push([0, 0, 0]));
+      inventoryAdd(inventory, inventory["chest"].push([0, 0, 0]));
+      inventoryAdd(inventory, inventory["gloves"].push([0, 0, 0]));
+      inventoryAdd(inventory, inventory["waist"].push([0, 0, 0]));
+      inventoryAdd(inventory, inventory["legs"].push([0, 0, 0]));
+      inventoryAdd(inventory, inventory["charm"].push([0, 0, 0]));
     });
 
     for (let i in inventory) {
-      inventoryAdd(inventory[i].sort());
-      console.log(inventory);
+      inventoryAdd(inventory, inventory[i].sort());
     }
 
     return () => (isSubscribed = false);
   }, []);
 
-  return <Container></Container>;
+  return (
+    <Container>
+      {inventory["head"].map((piece) => {
+        return <p>{piece}</p>;
+      })}
+    </Container>
+  );
 };
 
 export default SkillMapper;

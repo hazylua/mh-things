@@ -4,7 +4,6 @@
 }
 
 body {
-  /* box-sizing: border-box; */
   background: rgb(49, 49, 49);
   color: #fff;
   font-family: UI, Roboto, Helvetica, sans-serif;
@@ -53,20 +52,6 @@ nav li {
   color: #fff;
 }
 
-.register-input {
-  display: block;
-  margin: 0 auto;
-  padding: 1px;
-  position: relative;
-}
-
-.register-button {
-  display: block;
-  margin: 0 auto;
-  padding: 1px;
-  position: relative;
-}
-
 .header {
   background: #181818 none repeat scroll 0% 0%;
 }
@@ -87,11 +72,11 @@ nav li {
 }
 
 .container {
-  justify-content: center;
-  margin: 0px auto;
-  max-width: 1000px;
-  min-height: 1000px;
-  padding: 20px 0px 0px;
+  /* margin: 0px auto; */
+  /* max-width: 1000px; */
+  min-height: 100%;
+  padding: 20px;
+  /* border: 1px solid #fff; */
 }
 
 .col {

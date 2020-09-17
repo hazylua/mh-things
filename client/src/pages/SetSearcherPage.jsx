@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 
 import SkillMapper from "../components/SkillMapper";
+
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
@@ -46,18 +47,10 @@ const ArmorSetSearcher = () => {
   }, []);
 
   return (
-    <Container style={{ margin: "0", display: "flex", flexDirection: "row" }}>
-      <Container>
+    <Container>
+      <h2>Armor Set Searcher</h2>
+      <Row>
         <Col>
-          <h1 style={{ color: "black" }}>Settings:</h1>
-          12312321
-        </Col>
-      </Container>
-      <Container
-        style={{ marginLeft: "20px", display: "flex", flexDirection: "row" }}
-      >
-        <Col>
-          <h2>Armor Set Searcher</h2>
           <p>
             Please choose the skills you want in your set from the list below:
           </p>
@@ -71,8 +64,6 @@ const ArmorSetSearcher = () => {
               <FormControl
                 id="skill-input"
                 type="text"
-                className="input-group-text justify-content-center"
-                placeholder="Skill Name"
                 onChange={(params) => {
                   var temp = skills.filter(
                     (skill) =>
@@ -83,11 +74,10 @@ const ArmorSetSearcher = () => {
                   addFiltered(temp);
                 }}
                 type="text"
-                placeholder="Skill name"
               ></FormControl>
             </InputGroup>
           </Form>
-          <div className="ag-theme-alpine-dark" style={{ height: "500px" }}>
+          <div className="ag-theme-alpine-dark" style={{ height: "700px" }}>
             <AgGridReact
               onFirstDataRendered={onFirstDataRendered}
               columnDefs={colDefs}
@@ -102,7 +92,7 @@ const ArmorSetSearcher = () => {
 
         <Col>
           <p>Chosen skills:</p>
-          <div className="ag-theme-alpine-dark" style={{ height: "500px" }}>
+          <div className="ag-theme-alpine-dark" style={{ height: "700px" }}>
             <AgGridReact
               onFirstDataRendered={onFirstDataRendered}
               columnDefs={colDefs}
@@ -116,9 +106,13 @@ const ArmorSetSearcher = () => {
             ></AgGridReact>
           </div>
         </Col>
-
-        <SkillMapper></SkillMapper>
-      </Container>
+      </Row>
+      <Row>
+        <Col>
+          <p>Found:</p>
+          <SkillMapper></SkillMapper>
+        </Col>
+      </Row>
     </Container>
   );
 };
