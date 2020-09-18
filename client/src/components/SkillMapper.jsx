@@ -37,6 +37,7 @@ const SkillMapper = (props) => {
     legs: [],
     charm: [],
   });
+  const [limit, setLimit] = useState(10);
 
   const [response, setResponse] = useState({});
 
@@ -46,6 +47,7 @@ const SkillMapper = (props) => {
     let armor = null;
     let charms = null;
     let deco = null;
+
     Promise.all(
       maps.map((map) => {
         return fetch(map.url)
@@ -56,18 +58,20 @@ const SkillMapper = (props) => {
             return data;
           });
       })
-    ).then((values) => {
-      data = JSON.parse(JSON.stringify(values[0]));
-      armor = JSON.parse(JSON.stringify(values[1]));
-      charms = JSON.parse(JSON.stringify(values[2]));
-      deco = JSON.parse(JSON.stringify(values[3]));
-    });
-
-    for (let s in search) {
-      for (let a of data["master"][s]) {
-        inventoryAdd(inventory, inventory[a[1]].push(a));
-      }
-    }
+    )
+      .then((values) => {
+        data = JSON.parse(JSON.stringify(values[0]));
+        armor = JSON.parse(JSON.stringify(values[1]));
+        charms = JSON.parse(JSON.stringify(values[2]));
+        deco = JSON.parse(JSON.stringify(values[3]));
+      })
+      .then(() => {
+        for (let s in search) {
+          for (let a of data["master"][s]) {
+            inventoryAdd(inventory, inventory[a[1]].push(a));
+          }
+        }
+      });
 
     inventoryAdd(inventory, inventory["head"].push([0, 0, 0]));
     inventoryAdd(inventory, inventory["chest"].push([0, 0, 0]));
@@ -168,6 +172,106 @@ const SkillMapper = (props) => {
       }
     };
 
+    const chest = (armory, armor, total, check, sets) => {
+      if (!check) {
+        return;
+      }
+
+      for (let g in armory) {
+        let t,
+          c,
+          a = fits(armor, g, "chest", total);
+        gloves(inventory["gloves"], a, t, c, sets);
+        if (sets.length > limit) {
+          return;
+        }
+      }
+    };
+
+    const gloves = (armory, armor, total, check, sets) => {
+      if (!check) {
+        return;
+      }
+
+      for (let g in armory) {
+        let t,
+          c,
+          a = fits(armor, g, "gloves", total);
+        waist(inventory["waist"], a, t, c, sets);
+        if (sets.length > limit) {
+          return;
+        }
+      }
+    };
+
+    const waist = (armory, armor, total, check, sets) => {
+      if (!check) {
+        return;
+      }
+
+      for (let g in armory) {
+        let t,
+          c,
+          a = fits(armor, g, "waist", total);
+        legs(inventory["legs"], a, t, c, sets);
+        if (sets.length > limit) {
+          return;
+        }
+      }
+    };
+
+    const legs = (armory, armor, total, check, sets) => {
+      if (!check) {
+        return;
+      }
+
+      for (let g in armory) {
+        let t,
+          c,
+          a = fits(armor, g, "legs", total);
+        charm(inventory["charm"], a, t, c, sets);
+        if (sets.len > limit) {
+          return;
+        }
+      }
+    };
+
+    const charm = (armory, armor, total, check, sets) => {
+      if (!check) {
+        return;
+      }
+      if (sets.length > limit) {
+        return;
+      }
+
+      for (let g in armory) {
+        let t,
+          c,
+          a = fits(armor, g, "charms", total);
+
+        if (check_levels(t)) {
+          sets.push((t, a));
+        }
+
+        if (sets.length > limit) {
+          return;
+        }
+      }
+    };
+
+    const subset = () => {
+      let sets = [];
+
+      for (let g1 in inventory["head"]) {
+        armor = { decos: [] };
+        let s = { slosts: [0, 0, 0, 0], skills: {} };
+        let t,
+          c,
+          a = fits(armor, g1, "head", s);
+        chest(inventory["chest"], a, t, c, sets);
+      }
+      return sets;
+    };
     return () => (isSubscribed = false);
   }, []);
 
@@ -177,6 +281,13 @@ const SkillMapper = (props) => {
         return <p>{piece}</p>;
       })}
     </Container>
+    //
+    //   {() => {
+    //     for (let s in subset()) {
+    //        return <p>{s}</p>
+    //     }
+    //   }}
+    //
   );
 };
 
