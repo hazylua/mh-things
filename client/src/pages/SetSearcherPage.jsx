@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 
 import SkillMapper from "../components/SkillMapper";
+import Results from "../components/Results";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
@@ -83,8 +84,9 @@ const ArmorSetSearcher = () => {
               columnDefs={colDefs}
               rowData={filtered}
               onCellClicked={(params) => {
-                if (setSkills.indexOf(params.node.data) === -1)
+                if (setSkills.indexOf(params.node.data) === -1) {
                   setSkillsAdd((setSkills) => [...setSkills, params.node.data]);
+                }
               }}
             ></AgGridReact>
           </div>
@@ -108,10 +110,7 @@ const ArmorSetSearcher = () => {
         </Col>
       </Row>
       <Row>
-        <Col>
-          <p>Found:</p>
-          <SkillMapper></SkillMapper>
-        </Col>
+        <Results skills={setSkills}></Results>
       </Row>
     </Container>
   );
