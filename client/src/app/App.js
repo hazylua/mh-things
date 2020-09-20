@@ -5,7 +5,6 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
 
 import HomePage from "../pages/HomePage"
 import AboutPage from "../pages/AboutPage"

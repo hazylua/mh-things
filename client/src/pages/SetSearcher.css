@@ -1,0 +1,16 @@
+.results-box {
+  border: 3px solid white;
+  border-image: linear-gradient(0deg, #808080, #4a4a4a);
+  border-image-slice: 1;
+}
+
+.results-wide-button {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* AG Grid */
+.ag-theme-alpine-dark {
+  height: 500px;
+}

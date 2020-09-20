@@ -8,7 +8,8 @@ import {
   InputGroup,
 } from "react-bootstrap";
 
-import SkillMapper from "../components/SkillMapper";
+import "./SetSearcher.css";
+
 import Results from "../components/Results";
 
 import { AgGridReact } from "ag-grid-react";
@@ -51,10 +52,11 @@ const ArmorSetSearcher = () => {
     <Container>
       <h2>Armor Set Searcher</h2>
       <Row>
-        <Col>
-          <p>
-            Please choose the skills you want in your set from the list below:
-          </p>
+        <Col>Choose the skills from the list below:</Col>
+        <Col>Chosen skills:</Col>
+      </Row>
+      <Row>
+        <Col style={{ paddingBottom: "0", paddingTop: "0" }}>
           <Form>
             <InputGroup>
               <InputGroup.Prepend>
@@ -78,7 +80,12 @@ const ArmorSetSearcher = () => {
               ></FormControl>
             </InputGroup>
           </Form>
-          <div className="ag-theme-alpine-dark" style={{ height: "700px" }}>
+        </Col>
+        <Col style={{ paddingBottom: "0", paddingTop: "0" }}></Col>
+      </Row>
+      <Row>
+        <Col style={{ paddingBottom: "0", paddingTop: "0" }}>
+          <div className="ag-theme-alpine-dark">
             <AgGridReact
               onFirstDataRendered={onFirstDataRendered}
               columnDefs={colDefs}
@@ -91,10 +98,8 @@ const ArmorSetSearcher = () => {
             ></AgGridReact>
           </div>
         </Col>
-
-        <Col>
-          <p>Chosen skills:</p>
-          <div className="ag-theme-alpine-dark" style={{ height: "700px" }}>
+        <Col style={{ paddingBottom: "0", paddingTop: "0" }}>
+          <div className="ag-theme-alpine-dark">
             <AgGridReact
               onFirstDataRendered={onFirstDataRendered}
               columnDefs={colDefs}
@@ -110,7 +115,9 @@ const ArmorSetSearcher = () => {
         </Col>
       </Row>
       <Row>
-        <Results skills={setSkills}></Results>
+        <Col>
+          <Results></Results>
+        </Col>
       </Row>
     </Container>
   );
