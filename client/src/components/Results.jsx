@@ -4,8 +4,11 @@ import { Col, Button } from "react-bootstrap";
 import * as subset from "./Subset";
 
 const setSearchValues = (skills, data, armor, charms, decos) => {
-  subset.searchSet(skills);
+  // subset.searchSet(skills);
   subset.responseSet(data, armor, charms, decos);
+  subset.inventorySet();
+  // let sets = subset.subset();
+  // subset.showResults(sets);
 };
 
 const Results = (props) => {

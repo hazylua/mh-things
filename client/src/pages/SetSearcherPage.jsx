@@ -31,6 +31,16 @@ const ArmorSetSearcher = () => {
       field: "name",
     },
   ];
+  const colSets = [
+    {
+      headerName: "Skill Chosen",
+      field: "name",
+    },
+    {
+      headerName: "Skill Level",
+      field: "ranks.length",
+    },
+  ];
 
   useEffect(() => {
     let isSubscribed = true;
@@ -39,6 +49,7 @@ const ArmorSetSearcher = () => {
       .then((response) => response.json())
       .then((json) => {
         if (isSubscribed) {
+          console.log(json);
           skillsAdd(json);
           addFiltered(json);
         } else {
@@ -102,7 +113,7 @@ const ArmorSetSearcher = () => {
           <div className="ag-theme-alpine-dark">
             <AgGridReact
               onFirstDataRendered={onFirstDataRendered}
-              columnDefs={colDefs}
+              columnDefs={colSets}
               rowData={setSkills}
               onCellClicked={(params) => {
                 var temp = [...setSkills];
@@ -116,7 +127,7 @@ const ArmorSetSearcher = () => {
       </Row>
       <Row>
         <Col>
-          <Results></Results>
+          <Results skills={setSkills}></Results>
         </Col>
       </Row>
     </Container>
