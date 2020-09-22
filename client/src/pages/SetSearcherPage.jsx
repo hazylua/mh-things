@@ -49,7 +49,6 @@ const ArmorSetSearcher = () => {
       .then((response) => response.json())
       .then((json) => {
         if (isSubscribed) {
-          console.log(json);
           skillsAdd(json);
           addFiltered(json);
         } else {
@@ -127,7 +126,7 @@ const ArmorSetSearcher = () => {
       </Row>
       <Row>
         <Col>
-          <Results skills={setSkills}></Results>
+          <Results skills={setSkills} data={skills}></Results>
         </Col>
       </Row>
     </Container>

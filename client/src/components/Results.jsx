@@ -3,27 +3,41 @@ import { Col, Button } from "react-bootstrap";
 
 import * as subset from "./Subset";
 
-const setSearchValues = (skills, data, armor, charms, decos) => {
-  // subset.searchSet(skills);
-  subset.responseSet(data, armor, charms, decos);
-  subset.inventorySet();
-  // let sets = subset.subset();
-  // subset.showResults(sets);
+const formatResults = (results) => {
+  let jsx = [];
+  for (let key in results) {
+    jsx.push(<p>{key}</p>);
+    for (let type in results[key]) {
+      jsx.push(<p>{type}</p>);
+      for (let piece of results[key][type]) {
+        jsx.push(<p>{piece.name}</p>);
+      }
+    }
+  }
+
+  return jsx;
 };
 
 const Results = (props) => {
-  const [data, dataSet] = useState({});
-  const [armor, armorSet] = useState({});
-  const [decos, decosSet] = useState({});
-  const [charms, charmsSet] = useState({});
+  // const [data, dataSet] = useState({});
+  // const [armor, armorSet] = useState({});
+  // const [decos, decosSet] = useState({});
+  // const [charms, charmsSet] = useState({});
 
+  const [armorDB, armorDBSet] = useState([]);
+  const [charmsDB, charmsDBSet] = useState([]);
+
+  const [results, resultsSet] = useState({});
   useEffect(() => {
     let isSubscribed = true;
 
-    subset.fetchData().then((response) => dataSet(response));
-    subset.fetchArmor().then((response) => armorSet(response));
-    subset.fetchDecos().then((response) => decosSet(response));
-    subset.fetchCharms().then((response) => charmsSet(response));
+    // subset.fetchData().then((response) => dataSet(response));
+    // subset.fetchArmor().then((response) => armorSet(response));
+    // subset.fetchDecos().then((response) => decosSet(response));
+    // subset.fetchCharms().then((response) => charmsSet(response));
+
+    subset.fetchArmorDB().then((response) => armorDBSet(response));
+    subset.fetchCharmsDB().then((response) => charmsDBSet(response));
 
     return () => (isSubscribed = false);
   }, []);
@@ -35,11 +49,12 @@ const Results = (props) => {
         <Button
           className="results-wide-button"
           onClick={() => {
-            setSearchValues(props.skills, data, armor, charms, decos);
+            resultsSet(subset.mapSkills(props.skills, armorDB, charmsDB));
           }}
         >
-          Send Values
+          Search
         </Button>
+        <div>{formatResults(results)}</div>
       </Col>
     </React.Fragment>
   );

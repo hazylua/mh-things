@@ -42,6 +42,73 @@ export const fetchDecos = async () => {
     return data
 }
 
+export const fetchArmorDB = async () => {
+    let response = await fetch("https://mhw-db.com/armor")
+    let data = await response.json()
+    return data
+}
+
+export const fetchCharmsDB = async () => {
+    let response = await fetch("https://mhw-db.com/charms")
+    let data = await response.json()
+    return data
+}
+
+// Mapping skills to search to armor pieces.
+export const mapSkills = (skills, armorDB, charmsDB) => {
+    /*  Object with keys for each skill.
+    Each key is the name of the skill id is also an object defined as:
+        {
+            id: skill_id,
+            name: skill_name,
+            armor_pieces: {
+                "head": [{}, ...],
+                ...,
+                "charm: [{}, ...]"
+            }
+        }
+    */
+    var SkillToArmorMap = {}
+
+    skills.forEach(skill => {
+        SkillToArmorMap[String(skill.name)] = {
+            "head": [],
+            "chest": [],
+            "gloves": [],
+            "waist": [],
+            "legs": [],
+            "charm": []
+        }
+    })
+
+    for (let skill of skills) {
+        for (let armorPiece of armorDB) {
+            for (let armorPieceSkill of armorPiece.skills) {
+                if (armorPieceSkill.skillName === skill.name) {
+                    let type = armorPiece.type
+                    SkillToArmorMap[`${skill.name}`][`${type}`].push(armorPiece)
+                    break;
+                }
+            }
+        }
+        // If skill is present in the last rank of charm, consider it.
+        for (let charm of charmsDB) {
+            for (let charmSkill of charm.ranks[charm.ranks.length - 1].skills) {
+                if (charmSkill.skillName === skill.name) {
+                    SkillToArmorMap[`${skill.name}`][`charm`].push(charm)
+                }
+            }
+
+
+        }
+    }
+
+    return SkillToArmorMap
+
+
+}
+
+
 export const searchSet = (skills) => {
     search = {}
     skills.map(skill => {
@@ -49,6 +116,7 @@ export const searchSet = (skills) => {
         search[key] = true
     })
 }
+
 
 export const responseSet = (data_res, armor_res, charms_res, decos_res) => {
     data = data_res
