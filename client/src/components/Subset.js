@@ -62,9 +62,9 @@ export const mapSkills = (skills, armorDB, charmsDB) => {
             id: skill_id,
             name: skill_name,
             armor_pieces: {
-                "head": [{}, ...],
+                "head": [{obj_from_api}, ...],
                 ...,
-                "charm: [{}, ...]"
+                "charm: [{obj_from_api}, ...]"
             }
         }
     */

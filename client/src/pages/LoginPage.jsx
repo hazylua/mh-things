@@ -49,8 +49,8 @@ const LoginPage = () => {
 
   return (
     <Container>
+      <h2>Sign In</h2>
       <Col className="content-panels" style={{ marginLeft: "10px" }}>
-        <h2>Sign In</h2>
         <p>Login with your user information.</p>
         <Form.Group>
           <Form.Label>Email address</Form.Label>

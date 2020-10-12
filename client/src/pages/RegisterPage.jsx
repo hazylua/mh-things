@@ -48,8 +48,8 @@ const RegisterPage = () => {
 
   return (
     <Container>
+      <h2>Sign Up</h2>
       <Col className="content-panels" style={{ marginRight: "10px" }}>
-        <h2>Sign Up</h2>
         <p>
           In the future you'll be able to register if you'd like to attach saved
           sets and preferences to an account.

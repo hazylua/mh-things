@@ -39,6 +39,7 @@ const ArmorSetSearcher = () => {
     {
       headerName: "Skill Level",
       field: "ranks.length",
+      editable: "true",
     },
   ];
 
@@ -114,12 +115,12 @@ const ArmorSetSearcher = () => {
               onFirstDataRendered={onFirstDataRendered}
               columnDefs={colSets}
               rowData={setSkills}
-              onCellClicked={(params) => {
-                var temp = [...setSkills];
-                var index = temp.indexOf(params.node.data);
-                temp.splice(index, 1);
-                setSkillsAdd(temp);
-              }}
+              // onCellClicked={(params) => {
+              //   var temp = [...setSkills];
+              //   var index = temp.indexOf(params.node.data);
+              //   temp.splice(index, 1);
+              //   setSkillsAdd(temp);
+              // }}
             ></AgGridReact>
           </div>
         </Col>

@@ -5,8 +5,8 @@ const HomePage = () => (
   <Container>
     <Row>
       <Col className="content-panels" style={{ marginRight: "10px" }}>
+        <h4>What is this?</h4>
         <div>
-          <h4>What is this?</h4>
           <p>
             A webpage with a collection of assorted tools related to the Monster
             Hunter series.

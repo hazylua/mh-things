@@ -5,12 +5,15 @@ import * as subset from "./Subset";
 
 const formatResults = (results) => {
   let jsx = [];
-  for (let key in results) {
-    jsx.push(<p>{key}</p>);
-    for (let type in results[key]) {
-      jsx.push(<p>{type}</p>);
-      for (let piece of results[key][type]) {
-        jsx.push(<p>{piece.name}</p>);
+  if (results) {
+    jsx.push(<h3>Armor Pieces:</h3>);
+    for (let key in results) {
+      jsx.push(<p style={{ fontWeight: "bold" }}>{key}</p>);
+      for (let type in results[key]) {
+        jsx.push(<p style={{ marginLeft: "10px" }}>{type}</p>);
+        for (let piece of results[key][type]) {
+          jsx.push(<p style={{ marginRight: "20px" }}>{piece.name}</p>);
+        }
       }
     }
   }

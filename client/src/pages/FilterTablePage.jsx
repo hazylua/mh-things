@@ -55,8 +55,8 @@ const FilterTable = () => {
 
   return (
     <Container>
+      <h2>Filter Table</h2>
       <Col>
-        <h2>Filter Table</h2>
         <p>For convenience.</p>
         <Form>
           <InputGroup>
