@@ -22,22 +22,12 @@ const formatResults = (results) => {
 };
 
 const Results = (props) => {
-  // const [data, dataSet] = useState({});
-  // const [armor, armorSet] = useState({});
-  // const [decos, decosSet] = useState({});
-  // const [charms, charmsSet] = useState({});
-
   const [armorDB, armorDBSet] = useState([]);
   const [charmsDB, charmsDBSet] = useState([]);
 
   const [results, resultsSet] = useState({});
   useEffect(() => {
     let isSubscribed = true;
-
-    // subset.fetchData().then((response) => dataSet(response));
-    // subset.fetchArmor().then((response) => armorSet(response));
-    // subset.fetchDecos().then((response) => decosSet(response));
-    // subset.fetchCharms().then((response) => charmsSet(response));
 
     subset.fetchArmorDB().then((response) => armorDBSet(response));
     subset.fetchCharmsDB().then((response) => charmsDBSet(response));

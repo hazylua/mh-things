@@ -72,11 +72,8 @@ nav li {
 }
 
 .container {
-  /* margin: 0px auto; */
-  /* max-width: 1000px; */
   min-height: 100%;
   padding: 20px;
-  /* border: 1px solid #fff; */
 }
 
 .col {
