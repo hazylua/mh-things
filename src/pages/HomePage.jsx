@@ -1,10 +1,11 @@
 import React from "react";
-import { Container, Col, Row } from "react-bootstrap";
+import { Navbar } from "../components/Navbar";
 
 const HomePage = () => (
-  <Container>
-    <Row>
-      <Col className="content-panels" style={{ marginRight: "10px" }}>
+  <div>
+    <Navbar />
+    <div>
+      <div>
         <h4>What is this?</h4>
         <div>
           <p>
@@ -17,11 +18,10 @@ const HomePage = () => (
             page. An armor set searcher is also planned to be implemented.
           </p>
         </div>
-      </Col>
-      <Col className="content-panels" style={{ marginLeft: "10px" }}>
+      </div>
+      <div>
         <div>
           <h4>Other</h4>
-          <p>Other websites you might want to check out:</p>
           <div style={{ display: "grid" }}>
             <a href="https://mhworld.kiranico.com/">
               https://mhworld.kiranico.com/
@@ -34,9 +34,9 @@ const HomePage = () => (
             </a>
           </div>
         </div>
-      </Col>
-    </Row>
-  </Container>
+      </div>
+    </div>
+  </div>
 );
 
 export default HomePage;

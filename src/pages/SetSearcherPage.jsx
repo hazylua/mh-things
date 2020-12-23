@@ -1,12 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Col,
-  Row,
-  Form,
-  FormControl,
-  InputGroup,
-} from "react-bootstrap";
 
 import "./SetSearcher.css";
 
@@ -59,79 +51,32 @@ const ArmorSetSearcher = () => {
     return () => (isSubscribed = false);
   }, []);
 
-  return (
-    <Container>
-      <h2>Armor Set Searcher</h2>
-      <Row>
-        <Col>Choose the skills from the list below:</Col>
-        <Col>Chosen skills:</Col>
-      </Row>
-      <Row>
-        <Col style={{ paddingBottom: "0", paddingTop: "0" }}>
-          <Form>
-            <InputGroup>
-              <InputGroup.Prepend>
-                <InputGroup.Text>
-                  <i className="fa fa-search"></i>
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                id="skill-input"
-                type="text"
-                onChange={(params) => {
-                  var temp = skills.filter(
-                    (skill) =>
-                      skill.name
-                        .toUpperCase()
-                        .indexOf(params.target.value.toUpperCase()) !== -1
-                  );
-                  addFiltered(temp);
-                }}
-                type="text"
-              ></FormControl>
-            </InputGroup>
-          </Form>
-        </Col>
-        <Col style={{ paddingBottom: "0", paddingTop: "0" }}></Col>
-      </Row>
-      <Row>
-        <Col style={{ paddingBottom: "0", paddingTop: "0" }}>
-          <div className="ag-theme-alpine-dark">
-            <AgGridReact
-              onFirstDataRendered={onFirstDataRendered}
-              columnDefs={colDefs}
-              rowData={filtered}
-              onCellClicked={(params) => {
-                if (setSkills.indexOf(params.node.data) === -1) {
-                  setSkillsAdd((setSkills) => [...setSkills, params.node.data]);
-                }
-              }}
-            ></AgGridReact>
-          </div>
-        </Col>
-        <Col style={{ paddingBottom: "0", paddingTop: "0" }}>
-          <div className="ag-theme-alpine-dark">
-            <AgGridReact
-              onFirstDataRendered={onFirstDataRendered}
-              columnDefs={colSets}
-              rowData={setSkills}
-              // onCellClicked={(params) => {
-              //   var temp = [...setSkills];
-              //   var index = temp.indexOf(params.node.data);
-              //   temp.splice(index, 1);
-              //   setSkillsAdd(temp);
-              // }}
-            ></AgGridReact>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Results skills={setSkills} data={skills}></Results>
-        </Col>
-      </Row>
-    </Container>
-  );
+  return <div></div>;
 };
+
+{
+  /* <div className="ag-theme-alpine-dark">
+  <AgGridReact
+    onFirstDataRendered={onFirstDataRendered}
+    columnDefs={colDefs}
+    rowData={filtered}
+    onCellClicked={(params) => {
+      if (setSkills.indexOf(params.node.data) === -1) {
+        setSkillsAdd((setSkills) => [...setSkills, params.node.data]);
+      }
+    }}
+  ></AgGridReact>
+</div>; */
+}
+
+{
+  /* <div className="ag-theme-alpine-dark">
+  <AgGridReact
+    onFirstDataRendered={onFirstDataRendered}
+    columnDefs={colSets}
+    rowData={setSkills}
+  ></AgGridReact>
+</div>; */
+}
 
 export default ArmorSetSearcher;

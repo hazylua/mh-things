@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col, Form, InputGroup, FormControl } from "react-bootstrap";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
@@ -54,37 +53,31 @@ const FilterTable = () => {
   }, []);
 
   return (
-    <Container>
+    <div>
       <h2>Filter Table</h2>
-      <Col>
+      <div>
         <p>For convenience.</p>
-        <Form>
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text>
-                <i className="fa fa-search"></i>
-              </InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl
-              id="skill-input"
-              type="text"
-              className="input-group-text justify-content-center"
-              placeholder="Skill Name"
-              onChange={(params) => {
-                var temp = skills.filter(
-                  (skill) =>
-                    skill.name
-                      .toUpperCase()
-                      .indexOf(params.target.value.toUpperCase()) !== -1
-                );
-                filteredAdd(temp);
-              }}
-              size="lg"
-              type="text"
-              placeholder="Skill name"
-            ></FormControl>
-          </InputGroup>
-        </Form>
+        <form>
+          <i className="fa fa-search"></i>
+          <input
+            id="skill-input"
+            type="text"
+            className="input-group-text justify-content-center"
+            placeholder="Skill Name"
+            onChange={(params) => {
+              var temp = skills.filter(
+                (skill) =>
+                  skill.name
+                    .toUpperCase()
+                    .indexOf(params.target.value.toUpperCase()) !== -1
+              );
+              filteredAdd(temp);
+            }}
+            size="lg"
+            type="text"
+            placeholder="Skill name"
+          ></input>
+        </form>
         <div
           className="ag-theme-alpine-dark"
           style={{
@@ -104,8 +97,8 @@ const FilterTable = () => {
             })}
           ></AgGridReact>
         </div>
-      </Col>
-    </Container>
+      </div>
+    </div>
   );
 };
 
