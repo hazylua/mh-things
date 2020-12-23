@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Col, Button } from "react-bootstrap";
 
 import * as subset from "./Subset";
 
@@ -37,18 +36,18 @@ const Results = (props) => {
 
   return (
     <React.Fragment>
-      <Col className="results-box">
+      <div className="results-box">
         <h3>Results</h3>
-        <Button
+        <button
           className="results-wide-button"
           onClick={() => {
             resultsSet(subset.mapSkills(props.skills, armorDB, charmsDB));
           }}
         >
           Search
-        </Button>
+        </button>
         <div>{formatResults(results)}</div>
-      </Col>
+      </div>
     </React.Fragment>
   );
 };
