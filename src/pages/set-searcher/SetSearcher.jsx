@@ -2,18 +2,17 @@ import React, { useState, useEffect } from "react";
 
 import "./SetSearcher.css";
 
-import Results from "../components/Results";
-
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
-import { Navbar } from "../components/Navbar";
+
+import { Navbar } from "../../components/Navbar";
 
 const onFirstDataRendered = (params) => {
   params.api.sizeColumnsToFit();
 };
 
-const ArmorSetSearcher = () => {
+const SetSearcher = () => {
   const [skills, skillsAdd] = useState([]);
   const [setSkills, setSkillsAdd] = useState([]);
   const [filtered, addFiltered] = useState([]);
@@ -59,8 +58,7 @@ const ArmorSetSearcher = () => {
   );
 };
 
-{
-  /* <div className="ag-theme-alpine-dark">
+/* <div className="ag-theme-alpine-dark">
   <AgGridReact
     onFirstDataRendered={onFirstDataRendered}
     columnDefs={colDefs}
@@ -72,16 +70,13 @@ const ArmorSetSearcher = () => {
     }}
   ></AgGridReact>
 </div>; */
-}
 
-{
-  /* <div className="ag-theme-alpine-dark">
+/* <div className="ag-theme-alpine-dark">
   <AgGridReact
     onFirstDataRendered={onFirstDataRendered}
     columnDefs={colSets}
     rowData={setSkills}
   ></AgGridReact>
 </div>; */
-}
 
-export default ArmorSetSearcher;
+export default SetSearcher;

@@ -1,9 +1,10 @@
 import React from "react";
-import { Layout } from "../components/Layout";
 
-import "./styles/home.css";
+import { Layout } from "../../components/Layout";
 
-const HomePage = () => (
+import "./Home.css";
+
+const Home = () => (
   <Layout>
     <div className="container">
       <section>
@@ -35,4 +36,4 @@ const HomePage = () => (
   </Layout>
 );
 
-export default HomePage;
+export default Home;

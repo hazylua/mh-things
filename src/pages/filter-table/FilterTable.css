@@ -5,7 +5,10 @@
 .skill-filter {
   border: none;
   padding: 10px;
-  width: 50%;
+  width: 100%;
+  /* Make filter input width same as skill table. */
+  outline-offset: -1px;
+  margin-bottom: -1px;
 }
 
 .skill-table {

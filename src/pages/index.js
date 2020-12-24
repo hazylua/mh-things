@@ -1,3 +1,3 @@
-export { default as HomePage } from "./HomePage";
-export { default as FilterTablePage } from "./FilterTablePage";
-export { default as SetSearcherPage } from "./SetSearcherPage";
+export { Home } from "./home";
+export { FilterTable } from "./filter-table";
+export { SetSearcher } from "./set-searcher";
