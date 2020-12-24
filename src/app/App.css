@@ -1,10 +1,22 @@
 * {
   margin: 0;
   padding: 0;
-  color: var(--color-text-dark);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 :root {
-  --color-text-dark: #201a23;
+  --color-dark: #080f0f;
+  --color-light: #ffffff;
+  --color-text-dark: #1e1e24;
   --color-text-light: #fbfbfb;
+  --color-text-link: #e54b4b;
+}
+
+a {
+  color: var(--color-text-link);
+  text-decoration: none;
+}
+
+.border-bottom {
+  border-bottom: solid 2px var(--color-dark);
 }
