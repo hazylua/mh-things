@@ -4,6 +4,12 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
 
+import { Layout } from "../components/Layout";
+
+import { api } from "../services";
+
+import "./styles/filter-table.css";
+
 const onFirstDataRendered = (params) => {
   params.api.sizeColumnsToFit();
 };
@@ -19,20 +25,18 @@ const columnDefs = [
 ];
 
 const FilterTable = () => {
-  const [skills, skillsAdd] = useState([]);
-  const [filtered, filteredAdd] = useState([]);
+  const [skills, skillsSet] = useState([]);
+  const [filtered, filteredSet] = useState([]);
 
   useEffect(() => {
-    let isSubscribed = true;
-
-    fetch(
-      "https://raw.githubusercontent.com/yb00/mh-things/source/client/json/skill_pages.json"
-    )
-      .then((response) => response.json())
-      .then((json) => {
-        if (isSubscribed) {
+    const handleFetch = async () => {
+      try {
+        const response = await api().get("/data/skill_pages");
+        const data = await response.data;
+        console.log(data);
+        if (data) {
           let rows = [];
-          for (let object of json) {
+          for (let object of data) {
             let row_num = 1;
             for (let skill of object.decos) {
               rows.push({
@@ -43,27 +47,29 @@ const FilterTable = () => {
               row_num += 1;
             }
           }
-          skillsAdd(rows);
-          filteredAdd(rows);
+          skillsSet(rows);
+          filteredSet(rows);
         } else {
-          return null;
+          return;
         }
-      });
-    return () => (isSubscribed = false);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    handleFetch();
   }, []);
 
   return (
-    <div>
-      <h2>Filter Table</h2>
-      <div>
-        <p>For convenience.</p>
-        <form>
-          <i className="fa fa-search"></i>
+    <Layout>
+      <div className="container">
+        <h3>Filter Table</h3>
+        <div className="info-section">
+          <p>For convenience.</p>
+        </div>
+        <div>
           <input
-            id="skill-input"
-            type="text"
-            className="input-group-text justify-content-center"
-            placeholder="Skill Name"
+            className="skill-filter"
+            placeholder="Enter skill name to filter here."
             onChange={(params) => {
               var temp = skills.filter(
                 (skill) =>
@@ -71,34 +77,26 @@ const FilterTable = () => {
                     .toUpperCase()
                     .indexOf(params.target.value.toUpperCase()) !== -1
               );
-              filteredAdd(temp);
+              filteredSet(temp);
             }}
-            size="lg"
             type="text"
-            placeholder="Skill name"
-          ></input>
-        </form>
-        <div
-          className="ag-theme-alpine-dark"
-          style={{
-            height: "1000px",
-            width: "100%",
-          }}
-        >
-          <AgGridReact
-            onFirstDataRendered={onFirstDataRendered}
-            columnDefs={columnDefs}
-            rowData={filtered.map((skill) => {
-              return {
-                name: skill.name,
-                page: skill.page,
-                row: skill.row,
-              };
-            })}
-          ></AgGridReact>
+          />
+          <div className="skill-table ag-theme-alpine-dark">
+            <AgGridReact
+              onFirstDataRendered={onFirstDataRendered}
+              columnDefs={columnDefs}
+              rowData={filtered.map((skill) => {
+                return {
+                  name: skill.name,
+                  page: skill.page,
+                  row: skill.row,
+                };
+              })}
+            ></AgGridReact>
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
