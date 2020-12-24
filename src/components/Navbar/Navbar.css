@@ -4,11 +4,16 @@
   justify-content: left;
   padding: 10px;
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 .navbar-item {
   color: var(--color-text-dark);
   margin-right: 10px;
+}
+
+.navbar-item:hover {
+  color: var(--color-text-link);
 }
 
 .navbar-brand {
