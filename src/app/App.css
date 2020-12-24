@@ -1,6 +1,11 @@
+html {
+  box-sizing: border-box;
+}
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: inherit;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -19,4 +24,12 @@ a {
 
 .border-bottom {
   border-bottom: solid 2px var(--color-dark);
+}
+
+.container {
+  margin: 10px;
+}
+
+.container > section {
+  margin-bottom: 10px;
 }
