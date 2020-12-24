@@ -1,0 +1,14 @@
+.info-section {
+  margin-bottom: 1rem;
+}
+
+.skill-filter {
+  border: none;
+  padding: 10px;
+  width: 50%;
+}
+
+.skill-table {
+  height: 100vh;
+  width: 100%;
+}
