@@ -1,0 +1,23 @@
+.set-skills-table {
+  width: 50%;
+  height: 40vh;
+}
+
+.results-table {
+  width: 50%;
+  height: 40vh;
+}
+
+.set-searcher-area {
+  display: flex;
+  position: relative;
+}
+
+.set-searcher-settings {
+  background: var(--color-dark);
+  color: var(--color-text-light);
+  padding: 0 10px;
+  font-size: 20px;
+  top: 500px;
+  margin-right: 1rem;
+}
