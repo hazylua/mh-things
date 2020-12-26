@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import * as subset from "./Subset";
+import * as subset from "../../pages/set-searcher/Subset";
 
 const formatResults = (results) => {
   let jsx = [];
