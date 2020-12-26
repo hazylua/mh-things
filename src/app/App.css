@@ -33,3 +33,7 @@ a {
 .container > section {
   margin-bottom: 10px;
 }
+
+.sep {
+  width: 1rem;
+}
