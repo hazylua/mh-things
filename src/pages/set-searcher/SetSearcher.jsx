@@ -10,6 +10,8 @@ import { Layout } from "../../components/Layout";
 
 import { mhwdb } from "../../services";
 
+import * as subset from "./Subset";
+
 const onFirstDataRendered = (params) => {
   params.api.sizeColumnsToFit();
 };
@@ -36,6 +38,22 @@ const ChosenSkillsCols = [
 const SetSearcher = () => {
   const [skills, skillsSet] = useState([]);
   const [skillsChosen, skillsChosenSet] = useState([]);
+  const [config, configSet] = useState({
+    maxResults: 10,
+  });
+  const [inventory, inventorySet] = useState({
+    head: [],
+    chest: [],
+    gloves: [],
+    waist: [],
+    legs: [],
+    charm: [],
+    decos: [],
+  });
+
+  const [charms, charmsSet] = useState([]);
+  const [armor, armorSet] = useState([]);
+  const [decos, decosSet] = useState([]);
 
   const handleChosenSkillsRemove = (value) => {
     skillsChosenSet(skillsChosen.filter((skill) => skill !== value));
@@ -84,6 +102,7 @@ const SetSearcher = () => {
               }
             ></AgGridReact>
           </div>
+          <button>Search for set</button>
         </div>
       </div>
     </Layout>
