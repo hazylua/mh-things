@@ -1,7 +1,5 @@
 import React from "react";
 
-const SettingsBar = () => {
+export const SettingsBar = () => {
   return <aside className="set-searcher-settings"> + </aside>;
 };
-
-export default SettingsBar;

@@ -2,42 +2,15 @@ import React, { useState, useEffect } from "react";
 
 import "./SetSearcher.css";
 
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-fresh.css";
-
 import { Layout } from "../../components/Layout";
 
-import { mhwdb } from "../../services";
+
 
 import * as subset from "./Subset";
 
-const onFirstDataRendered = (params) => {
-  params.api.sizeColumnsToFit();
-};
-
-const SetSkillsCols = [
-  {
-    headerName: "Skill Name",
-    field: "name",
-    filter: true,
-  },
-];
-const ChosenSkillsCols = [
-  {
-    headerName: "Skill Chosen",
-    field: "name",
-  },
-  {
-    headerName: "Skill Level",
-    field: "ranks.length",
-    editable: true,
-  },
-];
+import { SkillsTable, PickedTable } from "./";
 
 const SetSearcher = () => {
-  const [skills, skillsSet] = useState([]);
-  const [skillsChosen, skillsChosenSet] = useState([]);
   const [config, configSet] = useState({
     maxResults: 10,
   });
@@ -50,26 +23,14 @@ const SetSearcher = () => {
     charm: [],
     decos: [],
   });
-
   const [charms, charmsSet] = useState([]);
   const [armor, armorSet] = useState([]);
   const [decos, decosSet] = useState([]);
-
-  const handleChosenSkillsRemove = (value) => {
-    skillsChosenSet(skillsChosen.filter((skill) => skill !== value));
+  const [skills, setSkills] = useState([]);
+  const [skillsChosen, setSkillsChosen] = useState([]);
+  const removeSkillsChosen = (value) => {
+    setSkillsChosen(skillsChosen.filter((skill) => skill !== value));
   };
-
-  useEffect(() => {
-    const handleFetch = async () => {
-      try {
-        const response = await mhwdb().get("/skills");
-        const data = await response.data;
-        skillsSet(data);
-      } catch (err) {}
-    };
-
-    handleFetch();
-  }, []);
 
   return (
     <Layout>
@@ -78,37 +39,20 @@ const SetSearcher = () => {
           <p>Search for any sets you want here.</p>
         </div>
         <div className="set-searcher-area">
-          {/* <aside className="set-searcher-settings"> + </aside> */}
-          <div className="ag-theme-fresh set-skills-table">
-            <AgGridReact
-              onFirstDataRendered={onFirstDataRendered}
-              columnDefs={SetSkillsCols}
-              rowData={skills}
-              onCellClicked={(params) => {
-                if (skillsChosen.indexOf(params.node.data) === -1) {
-                  skillsChosenSet([...skillsChosen, params.node.data]);
-                }
-              }}
-            ></AgGridReact>
-          </div>
+          <SkillsTable skills={skills} setSkills={setSkills} skillsChosen={skillsChosen} setSkillsChosen={setSkillsChosen} />
           <span className="sep" />
-          <div className="ag-theme-fresh results-table">
-            <AgGridReact
-              onFirstDataRendered={onFirstDataRendered}
-              columnDefs={ChosenSkillsCols}
-              rowData={skillsChosen}
-              onCellClicked={(params) =>
-                handleChosenSkillsRemove(params.node.data)
-              }
-            ></AgGridReact>
-          </div>
-          <button>Search for set</button>
+          <PickedTable
+            skillsChosen={skillsChosen}
+            setSkillsChosen={setSkillsChosen}
+            removeSkillsChosen={removeSkillsChosen}
+          />
         </div>
+        <button className="search-set">Search for set</button>
       </div>
     </Layout>
   );
 };
 
-/* ; */
+
 
 export default SetSearcher;

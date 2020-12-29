@@ -1,11 +1,11 @@
 .set-skills-table {
   width: 50%;
-  height: 40vh;
+  height: 60vh;
 }
 
 .results-table {
   width: 50%;
-  height: 40vh;
+  height: 60vh;
 }
 
 .set-searcher-area {
@@ -20,4 +20,10 @@
   font-size: 20px;
   top: 500px;
   margin-right: 1rem;
+}
+
+.search-set {
+  margin-top: 1rem;
+  width: 100%;
+  /* width: fit-content */
 }
