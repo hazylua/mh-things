@@ -43,8 +43,17 @@ export const SkillsTable = ({
         columnDefs={SetSkillsCols}
         rowData={skills}
         onCellClicked={(params) => {
-          if (skillsChosen.indexOf(params.node.data) === -1) {
-            setSkillsChosen([...skillsChosen, params.node.data]);
+          // Add new field: amount - determine skill amount for set search.
+          var newSkillMaxAmount = params.node.data.ranks.length;
+          var newSkill = {
+            ...params.node.data,
+            amount: newSkillMaxAmount,
+          };
+          // Check to see if skill is already picked.
+          if (
+            skillsChosen.findIndex((skill) => skill.id === newSkill.id) === -1
+          ) {
+            setSkillsChosen([...skillsChosen, newSkill]);
           }
         }}
       ></AgGridReact>
