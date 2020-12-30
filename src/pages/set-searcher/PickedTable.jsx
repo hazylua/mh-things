@@ -20,7 +20,11 @@ const ChosenSkillsCols = [
   },
 ];
 
-export const PickedTable = ({skillsChosen, setSkillsChosen, removeSkillsChosen}) => {
+export const PickedTable = ({ skillsChosen, setSkillsChosen }) => {
+  const removeSkillById = (id) => {
+    console.log(skillsChosen);
+    setSkillsChosen(skillsChosen.filter((skill) => skill.id !== id));
+  };
 
 
   return (
