@@ -8,6 +8,8 @@ import { Layout } from "../../components/Layout";
 
 import * as subset from "./Subset";
 
+import { mhwdb } from "../../services";
+
 import { SkillsTable, PickedTable } from "./";
 
 const SetSearcher = () => {
@@ -23,14 +25,38 @@ const SetSearcher = () => {
     charm: [],
     decos: [],
   });
-  const [charms, charmsSet] = useState([]);
-  const [armor, armorSet] = useState([]);
-  const [decos, decosSet] = useState([]);
+  const [charms, setCharms] = useState([]);
+  const [armor, setArmor] = useState([]);
+  const [decorations, setDecorations] = useState([]);
   const [skills, setSkills] = useState([]);
   const [skillsChosen, setSkillsChosen] = useState([]);
-  const removeSkillsChosen = (value) => {
-    setSkillsChosen(skillsChosen.filter((skill) => skill !== value));
-  };
+
+  useEffect(() => {
+    const handleCharmsFetch = async () => {
+      try {
+        const response = await mhwdb().get("/charms");
+        const data = await response.data;
+        setCharms(data);
+      } catch (err) {}
+    };
+    const handleDecorationsFetch = async () => {
+      try {
+        const response = await mhwdb().get("/decorations");
+        const data = response.data;
+        setDecorations(data);
+      } catch (err) {}
+    };
+    const handleArmorFetch = async () => {
+      try {
+        const response = await mhwdb().get("/armor");
+        const data = response.data;
+        setArmor(data);
+      } catch (err) {}
+    };
+    handleCharmsFetch();
+    handleDecorationsFetch();
+    handleArmorFetch();
+  });
 
   return (
     <Layout>
