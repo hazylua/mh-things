@@ -18,8 +18,12 @@ const SetSkillsCols = [
   },
 ];
 
-export const SkillsTable = ({skills, setSkills, skillsChosen, setSkillsChosen}) => {
-
+export const SkillsTable = ({
+  skills,
+  setSkills,
+  skillsChosen,
+  setSkillsChosen,
+}) => {
   useEffect(() => {
     const handleFetch = async () => {
       try {

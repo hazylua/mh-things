@@ -65,7 +65,12 @@ const SetSearcher = () => {
           <p>Search for any sets you want here.</p>
         </div>
         <div className="set-searcher-area">
-          <SkillsTable skills={skills} setSkills={setSkills} skillsChosen={skillsChosen} setSkillsChosen={setSkillsChosen} />
+          <SkillsTable
+            skills={skills}
+            setSkills={setSkills}
+            skillsChosen={skillsChosen}
+            setSkillsChosen={setSkillsChosen}
+          />
           <span className="sep" />
           <PickedTable
             skillsChosen={skillsChosen}
