@@ -4,8 +4,6 @@ import "./SetSearcher.css";
 
 import { Layout } from "../../components/Layout";
 
-
-
 import * as subset from "./Subset";
 
 import { mhwdb } from "../../services";
@@ -75,7 +73,6 @@ const SetSearcher = () => {
           <PickedTable
             skillsChosen={skillsChosen}
             setSkillsChosen={setSkillsChosen}
-            removeSkillsChosen={removeSkillsChosen}
           />
         </div>
         <button className="search-set">Search for set</button>
@@ -83,7 +80,5 @@ const SetSearcher = () => {
     </Layout>
   );
 };
-
-
 
 export default SetSearcher;
