@@ -31,6 +31,7 @@ export const PickedTable = ({ skillsChosen, setSkillsChosen }) => {
       <AgGridReact
         onFirstDataRendered={onFirstDataRendered}
         rowData={skillsChosen}
+        alwaysShowVerticalScroll={true}
         // Remove node by holding shift and clicking it.
         onCellClicked={(params) => {
           if (params.event.shiftKey) removeSkillById(params.node.data.id);

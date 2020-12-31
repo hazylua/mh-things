@@ -41,6 +41,7 @@ export const SkillsTable = ({
       <AgGridReact
         onFirstDataRendered={onFirstDataRendered}
         columnDefs={SetSkillsCols}
+        alwaysShowVerticalScroll={true}
         rowData={skills}
         onCellClicked={(params) => {
           // Add new field: amount - determine skill amount for set search.
