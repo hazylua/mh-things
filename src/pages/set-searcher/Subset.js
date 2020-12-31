@@ -1,55 +1,63 @@
 // // Subset.js should be only responsible for calculations.
 // // Fetches should be done on front-end.
 
-// // Mapping skills to search to armor pieces.
-// export const mapSkills = (skills, armorDB, charmsDB) => {
-//   /*  Object with keys for each skill.
-//     Each key is the name of the skill id is also an object defined as:
-//         {
-//             id: skill_id,
-//             name: skill_name,
-//             armor_pieces: {
-//                 "head": [{obj_from_api}, ...],
-//                 ...,
-//                 "charm: [{obj_from_api}, ...]"
-//             }
-//         }
-//     */
-//   var SkillToArmorMap = {};
+// Mapping skills to search to armor pieces.
+export const mapSkills = (skills, armorDB, charmsDB, decorationsDB) => {
+  /*  Object with keys for each skill.
+    Each key is the name of the skill id is also an object defined as:
+        {
+            id: skill_id,
+            name: skill_name,
+            armor_pieces: {
+                "head": [{obj_from_api}, ...],
+                ...,
+                "charm: [{obj_from_api}, ...]"
+            }
+        }
+    */
+  var SkillToArmorMap = {};
 
-//   skills.forEach((skill) => {
-//     SkillToArmorMap[String(skill.name)] = {
-//       head: [],
-//       chest: [],
-//       gloves: [],
-//       waist: [],
-//       legs: [],
-//       charm: [],
-//     };
-//   });
+  skills.forEach((skill) => {
+    SkillToArmorMap[String(skill.name)] = {
+      head: [],
+      chest: [],
+      gloves: [],
+      waist: [],
+      legs: [],
+      charm: [],
+      decoration: [],
+    };
+  });
 
-//   for (let skill of skills) {
-//     for (let armorPiece of armorDB) {
-//       for (let armorPieceSkill of armorPiece.skills) {
-//         if (armorPieceSkill.skillName === skill.name) {
-//           let type = armorPiece.type;
-//           SkillToArmorMap[`${skill.name}`][`${type}`].push(armorPiece);
-//           break;
-//         }
-//       }
-//     }
-//     // If skill is present in the last rank of charm, consider it.
-//     for (let charm of charmsDB) {
-//       for (let charmSkill of charm.ranks[charm.ranks.length - 1].skills) {
-//         if (charmSkill.skillName === skill.name) {
-//           SkillToArmorMap[`${skill.name}`][`charm`].push(charm);
-//         }
-//       }
-//     }
-//   }
+  for (let skill of skills) {
+    for (let armorPiece of armorDB) {
+      for (let armorPieceSkill of armorPiece.skills) {
+        if (armorPieceSkill.skillName === skill.name) {
+          let type = armorPiece.type;
+          SkillToArmorMap[`${skill.name}`][`${type}`].push(armorPiece);
+        }
+      }
+    }
+    // If skill is present in the last rank of charm, consider it.
+    for (let charm of charmsDB) {
+      for (let charmSkill of charm.ranks[charm.ranks.length - 1].skills) {
+        if (charmSkill.skillName === skill.name) {
+          SkillToArmorMap[`${skill.name}`][`charm`].push(charm);
+        }
+      }
+    }
 
-//   return SkillToArmorMap;
-// };
+    for (let decoration of decorationsDB) {
+      for (let decorationSkill of decoration.skills) {
+        if (decorationSkill.skillName === skill.name) {
+          SkillToArmorMap[`${skill.name}`][`decoration`].push(decoration);
+        }
+      }
+    }
+  }
+
+  return SkillToArmorMap;
+};
 
 // export const searchSet = (skills) => {
 //   search = {};
