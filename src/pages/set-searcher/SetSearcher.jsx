@@ -54,7 +54,7 @@ const SetSearcher = () => {
     handleCharmsFetch();
     handleDecorationsFetch();
     handleArmorFetch();
-  });
+  }, []);
 
   return (
     <Layout>
