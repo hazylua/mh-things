@@ -75,7 +75,15 @@ const SetSearcher = () => {
             setSkillsChosen={setSkillsChosen}
           />
         </div>
-        <button className="search-set">Search for set</button>
+        <button
+          className="search-set"
+          onClick={() => {
+            const mapped = subset.mapSkills(skills, armor, charms, decorations);
+            console.log(mapped);
+          }}
+        >
+          Search for set
+        </button>
       </div>
     </Layout>
   );

@@ -24,6 +24,18 @@
 
 .search-set {
   margin-top: 1rem;
+  padding: 10px;
   width: 100%;
-  /* width: fit-content */
+}
+
+button {
+  border: none;
+  background: var(--color-grey);
+  color: var(--color-black);
+  transition: background 500ms ease, color 500ms ease;
+}
+
+button:hover {
+  background: var(--color-black);
+  color: var(--color-white);
 }
