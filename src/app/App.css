@@ -10,8 +10,13 @@ html {
 }
 
 :root {
+  --color-red: #e54b4b;
+  --color-black: #080f0f;
+  --color-white: #f8f8f8;
+  --color-grey: #dcdcdc;
+
   --color-dark: #080f0f;
-  --color-light: #ffffff;
+  --color-light: #f8f8f8;
   --color-text-dark: #1e1e24;
   --color-text-light: #fbfbfb;
   --color-text-link: #e54b4b;
