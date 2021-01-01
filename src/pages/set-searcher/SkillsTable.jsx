@@ -5,6 +5,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-fresh.css";
 
 import { mhwdb } from "../../services";
+import axios from "axios";
 
 const onFirstDataRendered = (params) => {
   params.api.sizeColumnsToFit();
@@ -25,15 +26,22 @@ export const SkillsTable = ({
   setSkillsChosen,
 }) => {
   useEffect(() => {
+    const source = axios.CancelToken.source();
     const handleFetch = async () => {
       try {
-        const response = await mhwdb().get("/skills");
+        const response = await mhwdb().get("/skills", {
+          cancelToken: source.token,
+        });
         const data = await response.data;
         setSkills(data);
       } catch (err) {}
     };
 
     handleFetch();
+
+    return () => {
+      source.cancel("cancelled");
+    };
   }, []);
 
   return (

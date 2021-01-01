@@ -8,6 +8,7 @@ import "ag-grid-community/dist/styles/ag-theme-fresh.css";
 import { Layout } from "../../components/Layout";
 
 import { api } from "../../services";
+import axios from "axios";
 
 import "./FilterTable.css";
 
@@ -31,11 +32,14 @@ const FilterTable = () => {
   const [filtered, filteredSet] = useState([]);
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
     const handleFetch = async () => {
       try {
-        const response = await api().get("/data/skill_pages");
+        const response = await api().get("/data/skill_pages", {
+          cancelToken: source.token,
+        });
         const data = await response.data;
-        console.log(data);
+
         if (data) {
           let rows = [];
           for (let object of data) {
@@ -59,6 +63,10 @@ const FilterTable = () => {
       }
     };
     handleFetch();
+
+    return () => {
+      source.cancel('cancelled');
+    };
   }, []);
 
   return (

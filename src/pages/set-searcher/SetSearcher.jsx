@@ -7,6 +7,7 @@ import { Layout } from "../../components/Layout";
 import * as subset from "./Subset";
 
 import { mhwdb } from "../../services";
+import axios from "axios";
 
 import { SkillsTable, PickedTable } from "./";
 
@@ -30,23 +31,31 @@ const SetSearcher = () => {
   const [skillsChosen, setSkillsChosen] = useState([]);
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
+
     const handleCharmsFetch = async () => {
       try {
-        const response = await mhwdb().get("/charms");
+        const response = await mhwdb().get("/charms", {
+          cancelToken: source.token,
+        });
         const data = await response.data;
         setCharms(data);
       } catch (err) {}
     };
     const handleDecorationsFetch = async () => {
       try {
-        const response = await mhwdb().get("/decorations");
+        const response = await mhwdb().get("/decorations", {
+          cancelToken: source.token,
+        });
         const data = response.data;
         setDecorations(data);
       } catch (err) {}
     };
     const handleArmorFetch = async () => {
       try {
-        const response = await mhwdb().get("/armor");
+        const response = await mhwdb().get("/armor", {
+          cancelToken: source.token,
+        });
         const data = response.data;
         setArmor(data);
       } catch (err) {}
@@ -54,6 +63,10 @@ const SetSearcher = () => {
     handleCharmsFetch();
     handleDecorationsFetch();
     handleArmorFetch();
+
+    return () => {
+      source.cancel('cancelled')
+    }
   }, []);
 
   return (
