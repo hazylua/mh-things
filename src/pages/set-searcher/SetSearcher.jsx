@@ -24,11 +24,14 @@ const SetSearcher = () => {
     charm: [],
     decos: [],
   });
-  const [charms, setCharms] = useState([]);
-  const [armor, setArmor] = useState([]);
-  const [decorations, setDecorations] = useState([]);
-  const [skills, setSkills] = useState([]);
+  const [charms, setCharms] = useState(null);
+  const [armor, setArmor] = useState(null);
+  const [decorations, setDecorations] = useState(null);
+  const [skills, setSkills] = useState(null);
   const [skillsChosen, setSkillsChosen] = useState([]);
+  const [ready, setReady] = useState(false);
+  const [map, setMap] = useState({});
+  const [skillMap, setSkillMap] = useState(null)
 
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -60,14 +63,33 @@ const SetSearcher = () => {
         setArmor(data);
       } catch (err) {}
     };
+
+    const handleSkillMapFetch = async () => {
+      try {
+        const response = await axios.get('https://mh-files.herokuapp.com/assets/skillmap.json', {cancelToken: source.token})
+        const data = await response.data
+        console.log(data)
+        setSkillMap(data)
+      } catch (err) {}
+    }
     handleCharmsFetch();
     handleDecorationsFetch();
     handleArmorFetch();
+    handleSkillMapFetch()
 
     return () => {
-      source.cancel('cancelled')
-    }
+      source.cancel();
+    };
   }, []);
+
+  useEffect(() => {
+    if (armor && skills && decorations && charms) {
+      setReady(true);
+      console.log("all good");
+    } else {
+      if (ready !== false) setReady(false);
+    }
+  }, [armor, skills, decorations, charms, skillMap]);
 
   return (
     <Layout>
