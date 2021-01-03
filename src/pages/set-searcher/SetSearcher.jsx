@@ -89,7 +89,8 @@ const SetSearcher = () => {
           />
         </div>
         <button
-          className="search-set"
+          className={ready ? "search-set" : "search-set loading"}
+          disabled={!ready}
           onClick={() => {
             const mapped = subset.mapSkills(skills, armor, charms, decorations);
             console.log(mapped);
