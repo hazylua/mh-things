@@ -59,42 +59,47 @@ export const mapSkills = (skills, armorDB, charmsDB, decorationsDB) => {
   return SkillToArmorMap;
 };
 
-// export const searchSet = (skills) => {
-//   search = {};
-//   skills.map((skill) => {
-//     let key = skill.name.toLowerCase().replace(" ", "-");
-//     search[key] = true;
-//   });
-// };
+export const setSearch = (skills) => {
+  let search = {};
+  skills.map((skill) => {
+    let key = skill.name.toLowerCase().replace(" ", "-");
+    search[key] = skill.amount;
+  });
+  return search;
+};
 
-// export const responseSet = (data_res, armor_res, charms_res, decos_res) => {
-//   data = data_res;
-//   armor = armor_res;
-//   charms = charms_res;
-//   decos = decos_res;
-// };
+export const setInventory = (search, data) => {
+  let inventory = {
+    head: [],
+    chest: [],
+    gloves: [],
+    waist: [],
+    legs: [],
+    charm: [],
+  };
+  for (let s in search) {
+      console.log(s)
+    for (let a of data["master"][s]) {
+      inventory[a[1]].push(a);
+      inventory[a[1]].push();
+    }
+  }
 
-// export const inventorySet = () => {
-//   for (let s in search) {
-//     for (let a of data["master"][s]) {
-//       inventory[a[1]].push(a);
-//       inventory[a[1]].push();
-//     }
-//   }
+  inventory["head"].push([0, 0, 0]);
+  inventory["chest"].push([0, 0, 0]);
+  inventory["gloves"].push([0, 0, 0]);
+  inventory["waist"].push([0, 0, 0]);
+  inventory["legs"].push([0, 0, 0]);
+  inventory["charm"].push([0, 0, 0]);
 
-//   inventory["head"].push([0, 0, 0]);
-//   inventory["chest"].push([0, 0, 0]);
-//   inventory["gloves"].push([0, 0, 0]);
-//   inventory["waist"].push([0, 0, 0]);
-//   inventory["legs"].push([0, 0, 0]);
-//   inventory["charm"].push([0, 0, 0]);
+  for (let i in inventory) {
+    inventory[i].sort();
+  }
 
-//   for (let i in inventory) {
-//     inventory[i].sort();
-//   }
-// };
+  return inventory;
+};
 
-// export const check_levels = (total) => {
+// export const check_levels = (search, total) => {
 //   for (var skill in search) {
 //     if (skill in total["skills"] && total["skills"][skill] == search["skill"]) {
 //     } else {
