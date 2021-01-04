@@ -79,7 +79,7 @@ const SetSearcher = () => {
     } else {
       if (ready !== false) setReady(false);
     }
-  }, [armor, skills, decorations, charms, skillMap]);
+  }, [armor, skills, decorations, charms]);
 
   return (
     <Layout>
