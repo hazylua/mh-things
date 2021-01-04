@@ -4,7 +4,8 @@ import "./SetSearcher.css";
 
 import { Layout } from "../../components/Layout";
 
-import * as subset from "./Subset";
+import * as subset from "./actions/subset";
+import * as map from "./actions/map";
 
 import { mhwdb } from "../../services";
 import axios from "axios";
@@ -30,8 +31,6 @@ const SetSearcher = () => {
   const [skills, setSkills] = useState(null);
   const [skillsChosen, setSkillsChosen] = useState([]);
   const [ready, setReady] = useState(false);
-  const [map, setMap] = useState({});
-  const [skillMap, setSkillMap] = useState(null)
 
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -64,18 +63,9 @@ const SetSearcher = () => {
       } catch (err) {}
     };
 
-    const handleSkillMapFetch = async () => {
-      try {
-        const response = await axios.get('https://mh-files.herokuapp.com/assets/skillmap.json', {cancelToken: source.token})
-        const data = await response.data
-        console.log(data)
-        setSkillMap(data)
-      } catch (err) {}
-    }
     handleCharmsFetch();
     handleDecorationsFetch();
     handleArmorFetch();
-    handleSkillMapFetch()
 
     return () => {
       source.cancel();
@@ -114,8 +104,12 @@ const SetSearcher = () => {
           className={ready ? "search-set" : "search-set loading"}
           disabled={!ready}
           onClick={() => {
-            const mapped = subset.mapSkills(skills, armor, charms, decorations);
-            console.log(mapped);
+            const skillMap = map.mapSkills(
+              skills,
+              armor,
+              charms,
+              decorations
+            );
           }}
         >
           Search for set
