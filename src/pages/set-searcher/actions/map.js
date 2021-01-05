@@ -1,5 +1,7 @@
 export function mapSkills(skills, armorDB, charmsDB, decorationsDB) {
   var skillMap = {};
+
+  // Map armor pieces.
   for (var piece of armorDB) {
     var slots = [];
     for (var slot of piece["slots"]) slots.push(slot["rank"]);
@@ -8,6 +10,7 @@ export function mapSkills(skills, armorDB, charmsDB, decorationsDB) {
       const rank = piece.rank;
       const skill_name = skill.skillName;
 
+      // Template.
       const obj = {
         id: piece.id,
         slots: slots,
@@ -15,6 +18,7 @@ export function mapSkills(skills, armorDB, charmsDB, decorationsDB) {
         skill_amount: skill.level,
       };
 
+      // Check if key exists. If not, add empty object to it. Same for subkey.
       if (!skillMap[skill_name]) skillMap[skill_name] = {};
       if (!skillMap[skill_name][rank]) skillMap[skill_name][rank] = [];
       skillMap[skill_name][rank].push(obj);
