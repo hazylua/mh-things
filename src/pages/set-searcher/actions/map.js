@@ -44,6 +44,22 @@ export function mapSkills(skills, armorDB, charmsDB, decorationsDB) {
     }
   }
 
+  for (var decoration of decorationsDB) {
+    const slot = decoration.slot;
+    for (var skill of decoration["skills"]) {
+      const skill_name = skill.skillName;
+      const obj = {
+        id: decoration.id,
+        name: decoration.name,
+        rarity: decoration.rarity,
+        skill_amount: skill.level,
+      };
+
+      // Check if key exists. If not, add empty object to it. Same for subkey. Decoration position indicates how much it occupies in a slot.
+      if (!skillMap[skill_name]) skillMap[skill_name] = {};
+      if (!skillMap[skill_name]["decorations"])
+        skillMap[skill_name]["decorations"] = [null, [], [], [], []];
+      skillMap[skill_name]["decorations"][slot].push(obj);
     }
   }
 
