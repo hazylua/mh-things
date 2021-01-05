@@ -69,3 +69,27 @@ export function mapSkills(skills, armorDB, charmsDB, decorationsDB) {
 
   return skillMap;
 }
+
+// Use index of array as hash to id of armor.
+export const mapArmor = (armorDB) => {
+  var armorMap = [];
+  for (var piece of armorDB) {
+    const id = piece.id;
+    var skills = [];
+    for (var skill of piece["skills"]) {
+      const obj = {
+        id: skill.id,
+        skill_name: skill.skillName,
+        skill_amount: skill.level,
+      };
+      skills.push(obj);
+    }
+
+    // Create array to push to on index.
+    if (!armorMap[id]) armorMap[id] = [];
+    armorMap[id].push(skills);
+  }
+
+  return armorMap;
+};
+
