@@ -30,6 +30,7 @@ export function mapSkills(skills, armorDB, charmsDB, decorationsDB) {
     for (var rank of charm["ranks"]) {
       for (var skill of rank["skills"]) {
         const skill_name = skill.skillName;
+
         const obj = {
           id: charm.id,
           type: "charm",
@@ -48,10 +49,12 @@ export function mapSkills(skills, armorDB, charmsDB, decorationsDB) {
     }
   }
 
+  // Map decorations.
   for (var decoration of decorationsDB) {
     const slot = decoration.slot;
     for (var skill of decoration["skills"]) {
       const skill_name = skill.skillName;
+
       const obj = {
         id: decoration.id,
         name: decoration.name,
@@ -93,3 +96,28 @@ export const mapArmor = (armorDB) => {
   return armorMap;
 };
 
+// Use index of array as hash to id of charm.
+export const mapCharms = (charmDB) => {
+  var charmsMap = [];
+  for (var charm of charmDB) {
+    const id = charm.id;
+    for (var [idx, rank] of charm["ranks"].entries()) {
+      var skills = [];
+      for (var skill of rank["skills"]) {
+        const obj = {
+          id: skill.id,
+          skill_name: skill.skillName,
+          skill_amount: skill.level,
+        };
+        // Each position in the array at charmsMap[id] indicates an upgrade/rank of the charm. Last position is the max level of charm.
+        skills.push(obj);
+
+        // Create array to push to on index.
+        if (!charmsMap[id]) charmsMap[id] = [];
+        charmsMap[id].push(skills);
+      }
+    }
+  }
+
+  return charmsMap;
+};
