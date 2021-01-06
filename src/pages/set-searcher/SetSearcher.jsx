@@ -79,6 +79,21 @@ const SetSearcher = () => {
     }
   }, [armor, skills, decorations, charms]);
 
+  const search = () => {
+    const skillMap = map.mapSkills(skills, armor, charms, decorations);
+    const charmMap = map.mapCharms(charms);
+    const armorMap = map.mapArmor(armor);
+    // console.log(
+    //   "skill-map: ",
+    //   skillMap,
+    //   "\ncharm-map: ",
+    //   charmMap,
+    //   "\narmorMap: ",
+    //   armorMap
+    // );
+    subset.find(skillsChosen, skillMap);
+  };
+
   return (
     <Layout>
       <div className="container">
@@ -101,14 +116,7 @@ const SetSearcher = () => {
         <button
           className={ready ? "search-set" : "search-set loading"}
           disabled={!ready}
-          onClick={() => {
-            const skillMap = map.mapSkills(
-              skills,
-              armor,
-              charms,
-              decorations
-            );
-          }}
+          onClick={search}
         >
           Search for set
         </button>
