@@ -22,15 +22,7 @@ const SetSearcher = () => {
     }
     return obj;
   });
-  const [inventory, inventorySet] = useState({
-    head: [],
-    chest: [],
-    gloves: [],
-    waist: [],
-    legs: [],
-    charm: [],
-    decos: [],
-  });
+
   const [charms, setCharms] = useState(null);
   const [armor, setArmor] = useState(null);
   const [decorations, setDecorations] = useState(null);
