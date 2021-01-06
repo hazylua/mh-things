@@ -12,9 +12,15 @@ import axios from "axios";
 
 import { SkillsTable, PickedTable } from "./";
 
+import { TEXT, CONFIG } from "./constants";
+
 const SetSearcher = () => {
-  const [config, configSet] = useState({
-    maxResults: 10,
+  const [config, setConfig] = useState(() => {
+    var obj = {};
+    for (var key in CONFIG) {
+      obj[key] = CONFIG[key];
+    }
+    return obj;
   });
   const [inventory, inventorySet] = useState({
     head: [],
