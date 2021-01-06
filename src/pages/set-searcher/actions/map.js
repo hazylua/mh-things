@@ -13,9 +13,10 @@ export function mapSkills(skills, armorDB, charmsDB, decorationsDB) {
       // Template.
       const obj = {
         id: piece.id,
+        skill_amount: skill.level,
         slots: slots,
         name: piece.name,
-        skill_amount: skill.level,
+        type: piece.type,
       };
 
       // Check if key exists. If not, add empty object to it. Same for subkey.
@@ -33,11 +34,11 @@ export function mapSkills(skills, armorDB, charmsDB, decorationsDB) {
 
         const obj = {
           id: charm.id,
+          skill_amount: skill.level,
           type: "charm",
           rarity: rank.rarity,
           origin: charm.name,
           name: rank.name,
-          skill_amount: skill.level,
         };
 
         // Check if key exists. If not, add empty object to it. Same for subkey.
@@ -57,9 +58,9 @@ export function mapSkills(skills, armorDB, charmsDB, decorationsDB) {
 
       const obj = {
         id: decoration.id,
+        skill_amount: skill.level,
         name: decoration.name,
         rarity: decoration.rarity,
-        skill_amount: skill.level,
       };
 
       // Check if key exists. If not, add empty object to it. Same for subkey. Decoration position indicates how much it occupies in a slot.
@@ -82,8 +83,8 @@ export const mapArmor = (armorDB) => {
     for (var skill of piece["skills"]) {
       const obj = {
         id: skill.id,
-        skill_name: skill.skillName,
         skill_amount: skill.level,
+        skill_name: skill.skillName,
       };
       skills.push(obj);
     }
@@ -106,8 +107,8 @@ export const mapCharms = (charmDB) => {
       for (var skill of rank["skills"]) {
         const obj = {
           id: skill.id,
-          skill_name: skill.skillName,
           skill_amount: skill.level,
+          skill_name: skill.skillName,
         };
         // Each position in the array at charmsMap[id] indicates an upgrade/rank of the charm. Last position is the max level of charm.
         skills.push(obj);
