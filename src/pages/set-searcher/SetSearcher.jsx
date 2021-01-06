@@ -98,7 +98,7 @@ const SetSearcher = () => {
     <Layout>
       <div className="container">
         <div className="info-section">
-          <p>Search for any sets you want here.</p>
+          <p>{TEXT.INFO}</p>
         </div>
         <div className="set-searcher-area">
           <SkillsTable
