@@ -12,6 +12,13 @@ const sortDescendingSkillAmount = (inventory) => {
     .reverse();
 };
 
+const makeSearch = (skillsChosen) => {
+  var obj = {}
+  for(var skill of skillsChosen) 
+    obj[skill.name] = skill.amount
+  return obj
+}
+
 export const find = (skillsChosen, skillMap, charmMap, armorMap, config) => {
   const maxResults = 10;
   var inventory = {
