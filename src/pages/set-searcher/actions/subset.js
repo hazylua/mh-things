@@ -32,6 +32,7 @@ export const find = (skillsChosen, skillMap, charmMap, armorMap, config) => {
     charm: [],
     decorations: [null, [], [], [], []],
   };
+  var search = makeSearch(skillsChosen)
 
   for (var skill of skillsChosen) {
     const skill_name = skill.name;
