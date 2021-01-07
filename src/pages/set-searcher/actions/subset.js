@@ -199,3 +199,12 @@ const fit = (set, piece, pieceType, total, charmMap, armorMap, search) => {
   else
     return [total_copy, true, set_copy]
 };
+
+const checkLevels = (total, search) => {
+  for(var skill in search) {
+    if(skill in total['skills'] && total['skills'][skill] === search[skill]) {}
+    else
+      return false
+    return true
+  }
+}
