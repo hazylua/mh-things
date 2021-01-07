@@ -80,16 +80,24 @@ export const find = (skillsChosen, skillMap, charmMap, armorMap, config) => {
 
   // Fit head.
   for (var headPiece of inventory["head"]) {
-    var armor = { decorations: [] };
+    console.log('head')
+    var armorSet = { decorations: [] };
     var skills = { slots: [null, 0, 0, 0, 0], skills: {} };
-    var { t, c, a } = fit(
-      armor,
+    var [ total, check, set ] = fit(
+      armorSet,
       headPiece,
       headPiece.type,
       skills,
       charmMap,
-      armorMap
+      armorMap,
+      search
     );
+    // console.log(t, c, a)
+    chest(inventory, set, total, check, sets, armorMap, charmMap, search)
+  }
+  return sets
+};
+
 const chest = (inventory, set, total, check, sets, armorMap, charmMap, search) => {
   console.log('chest')
   if(!check)
