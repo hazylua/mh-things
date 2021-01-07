@@ -148,7 +148,24 @@ const waist = () => {};
 const legs = () => {};
 const charm = () => {};
 
-const fit = (set, piece, pieceType, total, charmMap, armorMap) => {
+const charm = (inventory, set, total, check, sets, armorMap, charmMap, search) => {
+  console.log('charm')
+  if(!check)
+    return
+  if(sets.length > limit)
+    return
+  
+  for(var charm of inventory['charms']) {
+    var [newTotal, newCheck, newSet] = fit(set, charm, charm.type, total, charmMap, armorMap, search)
+    if(checkLevels(newTotal))
+      sets.push([newTotal, newSet])
+    if(sets.length > limit)
+      return
+  }
+}
+
+
+const fit = (set, piece, pieceType, total, charmMap, armorMap, search) => {
   if (_.isEmpty(piece)) return [total, true, set];
 
   var picked = null;
