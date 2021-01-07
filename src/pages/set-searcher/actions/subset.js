@@ -179,13 +179,23 @@ const fit = (set, piece, pieceType, total, charmMap, armorMap, search) => {
     picked = armorMap[id];
   }
 
-  // var set_copy = _.cloneDeep(set)
-  // set_copy[pieceType] = piece.id
+  var set_copy = _.cloneDeep(set);
+  set_copy[pieceType] = piece.id;
 
-  // total_copy = _.cloneDeep(total)
+  var total_copy = _.cloneDeep(total);
 
-  // for(var slot of piece.slots)
-  //   total_copy['slots'][slot] += 1
-  
-  
+  for (var slot of piece.slots) total_copy["slots"][slot] += 1;
+  for (var pos of picked) {
+    for (var obj of pos) {
+      if (obj["skill_name"] && obj["skill_name"] in total_copy["skills"]) {
+        total_copy["skills"][obj["skill_name"]] += obj["skill_amount"];
+      } else {
+        total_copy["skills"][obj["skill_name"]] = obj["skill_amount"];
+      }
+    }
+  }
+  if(total_copy['skills'][piece['skill_name']] > search[piece['skill_name']])
+    return [total, false, set]
+  else
+    return [total_copy, true, set_copy]
 };
