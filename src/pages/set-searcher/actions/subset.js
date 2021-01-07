@@ -90,6 +90,17 @@ export const find = (skillsChosen, skillMap, charmMap, armorMap, config) => {
       charmMap,
       armorMap
     );
+const waist = (inventory, set, total, check, sets, armorMap, charmMap, search) => {
+  console.log('waist')
+  if(!check)
+    return
+  
+  for(var waistPiece of inventory['waist']) {
+    var [newTotal, newCheck, newSet] = fit(set, waistPiece, waistPiece.type, total, charmMap, armorMap, search)
+    legs(inventory['legs'], newSet, newTotal, newCheck, sets, armorMap. charmMap, search)
+  }
+};
+
 const legs = (inventory, set, total, check, sets, armorMap, charmMap, search) => {
   console.log('legs')
   if(!check)
