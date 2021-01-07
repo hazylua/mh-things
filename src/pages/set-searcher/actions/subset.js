@@ -1,5 +1,7 @@
 import _ from "lodash";
 
+const limit = 10
+
 const sortDescendingSkillAmount = (inventory) => {
   return inventory
     .sort((a, b) =>
