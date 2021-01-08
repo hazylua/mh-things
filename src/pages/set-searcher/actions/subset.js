@@ -29,7 +29,7 @@ export const find = (skillsChosen, skillMap, charmMap, armorMap, config) => {
     gloves: [],
     waist: [],
     legs: [],
-    charm: [],
+    charms: [],
     decorations: [null, [], [], [], []],
   };
   var search = makeSearch(skillsChosen)
@@ -47,7 +47,7 @@ export const find = (skillsChosen, skillMap, charmMap, armorMap, config) => {
     // Check if skill is in.
     if (skillMap[skill_name]["charms"])
       for (var charm of skillMap[skill_name]["charms"]) {
-        inventory["charm"].push({ ...charm, skill_name: skill_name });
+        inventory["charms"].push({ ...charm, skill_name: skill_name });
       }
     // Check if skill is in.
     if (skillMap[skill_name]["decorations"])
