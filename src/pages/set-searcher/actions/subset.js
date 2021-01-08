@@ -115,7 +115,7 @@ const chest = (inventory, set, total, check, sets, armorMap, charmMap, search) =
   
   for(var chestPiece of inventory['chest']) {
     var [newTotal, newCheck, newSet] = fit(set, chestPiece, chestPiece.type, total, charmMap, armorMap, search)
-    gloves(inventory['gloves'], newSet, newTotal, newCheck, sets, armorMap. charmMap, search)
+    gloves(inventory, newSet, newTotal, newCheck, sets, armorMap, charmMap, search)
   }
 };
 
@@ -126,7 +126,7 @@ const gloves = (inventory, set, total, check, sets, armorMap, charmMap, search) 
   
   for(var glovesPiece of inventory['gloves']) {
     var [newTotal, newCheck, newSet] = fit(set, glovesPiece, glovesPiece.type, total, charmMap, armorMap, search)
-    waist(inventory['waist'], newSet, newTotal, newCheck, sets, armorMap. charmMap, search)
+    waist(inventory, newSet, newTotal, newCheck, sets, armorMap, charmMap, search)
   }
 };
 
@@ -137,7 +137,7 @@ const waist = (inventory, set, total, check, sets, armorMap, charmMap, search) =
   
   for(var waistPiece of inventory['waist']) {
     var [newTotal, newCheck, newSet] = fit(set, waistPiece, waistPiece.type, total, charmMap, armorMap, search)
-    legs(inventory['legs'], newSet, newTotal, newCheck, sets, armorMap. charmMap, search)
+    legs(inventory, newSet, newTotal, newCheck, sets, armorMap, charmMap, search)
   }
 };
 
@@ -148,7 +148,7 @@ const legs = (inventory, set, total, check, sets, armorMap, charmMap, search) =>
   
   for(var legsPiece of inventory['legs']) {
     var [newTotal, newCheck, newSet] = fit(set, legsPiece, legsPiece.type, total, charmMap, armorMap, search)
-    charm(inventory['charms'], newSet, newTotal, newCheck, sets, armorMap. charmMap, search)
+    charm(inventory, newSet, newTotal, newCheck, sets, armorMap, charmMap, search)
    }
  };
 
