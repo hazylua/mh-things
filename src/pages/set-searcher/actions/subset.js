@@ -152,12 +152,6 @@ const legs = (inventory, set, total, check, sets, armorMap, charmMap, search) =>
    }
  };
 
-const chest = () => {};
-const gloves = () => {};
-const waist = () => {};
-const legs = () => {};
-const charm = () => {};
-
 const charm = (inventory, set, total, check, sets, armorMap, charmMap, search) => {
   console.log('charm')
   if(!check)
